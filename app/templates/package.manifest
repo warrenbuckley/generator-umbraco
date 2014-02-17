@@ -1,0 +1,28 @@
+{    
+    propertyEditors: [      
+        {
+            alias: "My.MarkdownEditor",
+            name: "Markdown editor",
+            editor: {
+                view: "~/App_Plugins/YourPluginsFolder/view.html",
+                valueType: "JSON" //or TEXT, STRING, DATETIME, INT
+            },
+            prevalues: {
+                fields:[
+                    {
+                        label: "Your label",
+                        description: "Your description",
+                        key:"yourKey",
+                        view:"boolean"
+                    }
+                ]
+            }
+        }
+    ],
+    javascript: [
+        "~/App_Plugins/MarkDownEditor/markdowneditor.controller.js"
+    ],
+    css:[ 
+        "~/App_Plugins/YourPluginsFolder/style.css"
+    ]
+}
