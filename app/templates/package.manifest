@@ -1,11 +1,11 @@
 {    
     propertyEditors: [      
         {
-            alias: "My.MarkdownEditor",
-            name: "Markdown editor",
+            alias: "<%= propertyTypeAlias %>",
+            name: "<%= propertyTypeName %>",
             editor: {
                 view: "~/App_Plugins/YourPluginsFolder/view.html",
-                valueType: "JSON" //or TEXT, STRING, DATETIME, INT
+                valueType: "<%= propertyTypeValue %>"
             },
             prevalues: {
                 fields:[

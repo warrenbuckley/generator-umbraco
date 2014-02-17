@@ -85,13 +85,13 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     console.log(chalk.green('Creating App'));
 
     //This is the folder name /app_plugins/googlemaps
-    var folderName = 'app_plugins/' + this.propertyTypeAlias;
+    this.folderName = 'app_plugins/' + this.propertyTypeAlias;
 
     //Create the app_plugins folder at the root of this command
     this.mkdir('app_plugins');
 
     //Create the property editor folder
-    this.mkdir(folderName);
+    this.mkdir(this.folderName);
   },
 
   //Copy bower, grunt & package.json files over
@@ -115,18 +115,19 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
     console.log(chalk.green('Creating Umbraco Files'));
 
-    //Copy/Template the package.manifest to the app_plugins
-    //TODO
-
     //Copy/Template the HTML view
-
+    this.template('index.html', this.folderName + '/index.html');
 
     //Copy/Template the JS controller
+    this.controllerName = this.propertyTypeAlias + '.controller';
+    this.template('controller.js', this.folderName + '/' + this.propertyTypeAlias +'.js');
 
-    //Copy any CSS files
+    //Copy any CSS dependancy files
 
-    //Copy and JS files needed
+    //Copy any JS dependancy files needed
 
+    //Copy/Template the package.manifest to the app_plugins
+    this.template('package.manifest', this.folderName + '/package.manifest');
   }
   
 
