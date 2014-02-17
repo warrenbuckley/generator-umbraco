@@ -71,7 +71,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
       //Get the values the user answered & store them
       this.developerName      = props.developerName;
-      this.propertyTypeAlias  = props.propertyTypeAlias;
+      this.propertyTypeAlias  = props.propertyTypeAlias.replace(' ','.'); //Replace spaces with dots in the alias
       this.propertyTypeName   = props.propertyTypeName;
       this.propertyTypeValue  = props.propertyTypeValue;
 
@@ -81,18 +81,55 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
   //This function stubs out the application
   app: function () {
-    this.mkdir('app');
-    this.mkdir('app/templates');
 
+    console.log(chalk.green('Creating App'));
+
+    //This is the folder name /app_plugins/googlemaps
+    var folderName = 'app_plugins/' + this.propertyTypeAlias;
+
+    //Create the app_plugins folder at the root of this command
+    this.mkdir('app_plugins');
+
+    //Create the property editor folder
+    this.mkdir(folderName);
+  },
+
+  //Copy bower, grunt & package.json files over
+  workflowfiles: function() {
     this.copy('_package.json', 'package.json');
     this.copy('_bower.json', 'bower.json');
+
+    //TODO: Grunt
   },
 
   //This function copies & stubs out any project files
   projectfiles: function () {
+
+    console.log(chalk.green('Creating Project Files'));
+
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
+  },
+
+  umbracofiles: function() {
+
+    console.log(chalk.green('Creating Umbraco Files'));
+
+    //Copy/Template the package.manifest to the app_plugins
+    //TODO
+
+    //Copy/Template the HTML view
+
+
+    //Copy/Template the JS controller
+
+    //Copy any CSS files
+
+    //Copy and JS files needed
+
   }
+  
+
 });
 
 module.exports = UmbracoGenerator;
