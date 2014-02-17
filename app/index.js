@@ -74,7 +74,9 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       this.propertyTypeAlias  = props.propertyTypeAlias.replace(' ','.'); //Replace spaces with dots in the alias
       this.propertyTypeName   = props.propertyTypeName;
       this.propertyTypeValue  = props.propertyTypeValue;
-
+      
+      //Build Up the Controller Name
+      this.controllerName     = this.propertyTypeAlias + '.controller';
       done();
     }.bind(this));
   },
@@ -119,7 +121,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.template('index.html', this.folderName + '/index.html');
 
     //Copy/Template the JS controller
-    this.controllerName = this.propertyTypeAlias + '.controller';
+    
     this.template('controller.js', this.folderName + '/' + this.propertyTypeAlias +'.js');
 
     //Copy any CSS dependancy files
