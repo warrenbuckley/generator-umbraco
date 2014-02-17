@@ -74,9 +74,13 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       this.propertyTypeAlias  = props.propertyTypeAlias.replace(' ','.'); //Replace spaces with dots in the alias
       this.propertyTypeName   = props.propertyTypeName;
       this.propertyTypeValue  = props.propertyTypeValue;
-      
+
       //Build Up the Controller Name
-      this.controllerName     = this.propertyTypeAlias + '.controller';
+      this.controllerName = this.propertyTypeAlias + '.controller';
+
+      //This is the folder name /app_plugins/googlemaps
+      this.folderName = 'app_plugins/' + this.propertyTypeAlias;
+
       done();
     }.bind(this));
   },
@@ -86,8 +90,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
     console.log(chalk.green('Creating App'));
 
-    //This is the folder name /app_plugins/googlemaps
-    this.folderName = 'app_plugins/' + this.propertyTypeAlias;
+    
 
     //Create the app_plugins folder at the root of this command
     this.mkdir('app_plugins');
@@ -117,18 +120,21 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
     console.log(chalk.green('Creating Umbraco Files'));
 
-    //Copy/Template the HTML view
+    //Copy & Template the HTML view
     this.template('index.html', this.folderName + '/index.html');
 
-    //Copy/Template the JS controller
-    
+    //Copy & Template the JS controller
     this.template('controller.js', this.folderName + '/' + this.propertyTypeAlias +'.js');
 
-    //Copy any CSS dependancy files
+    //Copy Less Source Dependancy Files (Grunt will build to single file)
+    //Would prefer Sass but depends on ruby & no way to check :(
+    //But Less can be installed via npm
 
-    //Copy any JS dependancy files needed
 
-    //Copy/Template the package.manifest to the app_plugins
+    //Copy any JS Source Depednacy Files (Grunt will build to single file)
+
+
+    //Copy & Template the package.manifest to the app_plugins
     this.template('package.manifest', this.folderName + '/package.manifest');
   }
   

@@ -20,9 +20,11 @@
         }
     ],
     javascript: [
+        //TODO: The Build/minified version
         "~/App_Plugins/MarkDownEditor/markdowneditor.controller.js"
     ],
-    css:[ 
+    css:[
+        //TODO: The Build/minified version
         "~/App_Plugins/YourPluginsFolder/style.css"
     ]
 }
