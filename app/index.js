@@ -15,8 +15,17 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     //Wire up an event when the Yo Generator Ends...
     this.on('end', function () {
       if (!this.options['skip-install']) {
+
+        console.log(chalk.green('Installing npm dependencies'));
         this.npmInstall();
       }
+
+      //All Done...
+      //TODO:Buddha Ascii Art
+      var buddha = 'Imagine a cool ASCII buddha here'
+
+      console.log(buddha);
+
     });
   },
 
@@ -37,9 +46,6 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     
     //Empty line between version info above & the questions
     console.log('');
-
-    //Buddha Art
-    //TODO
 
     //Questions/Prompts we ask our user
     var prompts = [
@@ -90,8 +96,6 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
     console.log(chalk.green('Creating App'));
 
-    
-
     //Create the app_plugins folder at the root of this command
     this.mkdir('app_plugins');
 
@@ -101,19 +105,12 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
   //Copy bower, grunt & package.json files over
   workflowfiles: function() {
-    this.copy('_package.json', 'package.json');
+
+    console.log(chalk.green('Creating Workflow items'));
+
+    this.template('_package.json', 'package.json');
     this.copy('_bower.json', 'bower.json');
-
-    //TODO: Grunt
-  },
-
-  //This function copies & stubs out any project files
-  projectfiles: function () {
-
-    console.log(chalk.green('Creating Project Files'));
-
-    this.copy('editorconfig', '.editorconfig');
-    this.copy('jshintrc', '.jshintrc');
+    this.copy('gruntfile.js', 'gruntfile.js');
   },
 
   umbracofiles: function() {
@@ -132,7 +129,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
 
     //Copy any JS Source Depednacy Files (Grunt will build to single file)
-
+    //None in this GoogleMaps Example is needed
 
     //Copy & Template the package.manifest to the app_plugins
     this.template('package.manifest', this.folderName + '/package.manifest');
