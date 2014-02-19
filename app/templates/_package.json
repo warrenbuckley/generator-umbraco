@@ -1,5 +1,5 @@
 {
-  "name": "<%= propertyTypeName %>",
+  "name": "<%= propertyTypeAlias %>",
   "version": "0.0.1",
   "description": "An Umbraco Property Editor",
   "license": "MIT",
