@@ -111,7 +111,7 @@ module.exports = function(grunt) {
 
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    //We will run concat first followed by JS minify (aka Uglify), then imagemin
-    grunt.registerTask('default', ['concat', 'uglify', 'imagemin', 'sass', 'connect', 'watch']);
+    //We will run concat first followed by JS minify (aka Uglify), then imagemin...
+    grunt.registerTask('default', ['concat', 'uglify', 'imagemin', 'connect', 'watch']);
 
 };
