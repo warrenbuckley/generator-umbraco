@@ -1,6 +1,8 @@
 'use strict';
-var util 	= require('util');
+var util 	  = require('util');
+var path    = require('path');
 var yeoman 	= require('yeoman-generator');
+var chalk   = require('chalk');
 
 
 var PrevalueGenerator = yeoman.generators.NamedBase.extend({
@@ -21,8 +23,8 @@ var PrevalueGenerator = yeoman.generators.NamedBase.extend({
     //Questions/Prompts we ask our user
     var prompts = [
       {
-        name: 'prevalueAlias',
-        message: 'Prevalue Alias',
+        name: 'prevalueLabel',
+        message: 'Label',
         default: 'myPrevalue'
       },
       {
@@ -32,12 +34,12 @@ var PrevalueGenerator = yeoman.generators.NamedBase.extend({
       },
       {
         name: 'prevalueKey',
-        message: 'Prevalue Key',
+        message: 'Key',
         default: 'myPreValueField'
       },
       {
         name: 'prevalueView',
-        message: 'Prevalue View',
+        message: 'View',
         default: 'boolean'
       }
     ];
@@ -45,19 +47,58 @@ var PrevalueGenerator = yeoman.generators.NamedBase.extend({
     this.prompt(prompts, function (props) {
 
       //Get the values the user answered & store them
-      this.prevalueAlias  		  = props.prevalueAlias.replace(' ','.'); //Replace spaces with dots in the alias
+      this.prevalueLabel  		  = props.prevalueLabel.replace(' ','.'); //Replace spaces with dots in the alias
       this.prevalueDescription  = props.prevalueDescription;
-      this.prevalueKey  		    = props.prevalueKey;
       this.prevalueView         = props.prevalueView;
+      this.prevalueKey          = this.name.replace(' ','.'); //The param we passed into the  
 
       done();
     }.bind(this));
   },
 
   updateJson: function () {
-  	//Load the package.manifest JSON file
 
-  	//If file does not exist - throw an error
+    //This subgenerator needs to be run inside app_plugins/propertyName/ so we can get the package.manifest
+
+  	//Load the package.manifest JSON file
+    this.packagemanifest = yeoman.file.readJSON('package.manifest');
+
+    //Create our JSON item we need to push into the array
+    /*
+    {
+        label: "Number of columns",
+        description: "Enter the number of columns",
+        key: "cols",
+        view: "number"
+    }
+    */
+    var prevalueToAdd = {
+      "label": this.prevalueLabel,
+      "description": this.prevalueDescription,
+      "key": this.prevalueKey,
+      "view": this.prevalueView 
+    };
+
+    //Load in the prevalues item
+    var prevalues = this.packagemanifest.propertyEditors[0].prevalues;
+    var fields    = prevalues.fields;
+
+    //DEBUG
+    //console.log(prevalues);
+    //console.log(fields);
+
+
+    //Push our new item into the JSON
+    //prevalues --> fields array
+    fields.push(prevalueToAdd);
+
+    //DEBUG - See if prevalue has been added
+    //console.log(prevalues);
+    //console.log(fields);
+
+    //Write the updated JSON back down to disk (new file, until I can do auto override?)
+    this.write('package-new.manifest',JSON.stringify(this.packagemanifest));
+
   }
 });
 
