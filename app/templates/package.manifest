@@ -1,35 +1,35 @@
 {    
-    propertyEditors: [      
+    "propertyEditors": [      
         {
-            alias: "<%= propertyTypeAlias %>",
-            name: "<%= propertyTypeName %>",
-            editor: {
-                view: "~/App_Plugins/YourPluginsFolder/view.html",
-                valueType: "<%= propertyTypeValue %>"
+            "alias": "<%= propertyTypeAlias %>",
+            "name": "<%= propertyTypeName %>",
+            "editor": {
+                "view": "~/App_Plugins/YourPluginsFolder/view.html",
+                "valueType": "<%= propertyTypeValue %>"
             },
-            prevalues: {
-                fields: [
+            "prevalues": {
+                "fields": [
                     {
-                        label: "Number of columns",
-                        description: "Enter the number of columns",
-                        key: "cols",
-                        view: "requiredfield"
+                        "label": "Number of columns",
+                        "description": "Enter the number of columns",
+                        "key": "cols",
+                        "view": "requiredfield"
                     },
                     {
-                        label: "Your label",
-                        description: "Your description",
-                        key:"yourKey",
-                        view:"boolean"
+                        "label": "Your label",
+                        "description": "Your description",
+                        "key": "yourKey",
+                        "view": "boolean"
                     }               
                 ]
             }
         }
     ],
-    javascript: [
+    "javascript": [
         //TODO: The Build/minified version
         "~/App_Plugins/MarkDownEditor/markdowneditor.controller.js"
     ],
-    css:[
+    "css":[
         //TODO: The Build/minified version
         "~/App_Plugins/YourPluginsFolder/style.css"
     ]
