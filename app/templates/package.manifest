@@ -8,13 +8,19 @@
                 valueType: "<%= propertyTypeValue %>"
             },
             prevalues: {
-                fields:[
+                fields: [
+                    {
+                        label: "Number of columns",
+                        description: "Enter the number of columns",
+                        key: "cols",
+                        view: "requiredfield"
+                    },
                     {
                         label: "Your label",
                         description: "Your description",
                         key:"yourKey",
                         view:"boolean"
-                    }
+                    }               
                 ]
             }
         }
