@@ -21,10 +21,9 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       }
 
       //All Done...
-      //TODO:Buddha Ascii Art
-      var buddha = 'Imagine a cool ASCII buddha here'
-
-      console.log(buddha);
+      //Buddha Ascii Art
+      var buddha = this.readFileAsString(path.join(this.sourceRoot(), 'buddha.txt'));
+      console.log(chalk.green(buddha));
 
     });
   },
