@@ -96,8 +96,9 @@ var PrevalueGenerator = yeoman.generators.NamedBase.extend({
     //console.log(prevalues);
     //console.log(fields);
 
-    //Write the updated JSON back down to disk (new file, until I can do auto override?)
-    this.write('package-new.manifest',JSON.stringify(this.packagemanifest));
+    //Write the updated JSON back down to disk
+    //TODO: IS there a way to force overwrite automatically?
+    this.write('package.manifest',JSON.stringify(this.packagemanifest));
 
   }
 });
