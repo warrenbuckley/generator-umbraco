@@ -2,6 +2,7 @@
 
 > [Yeoman](http://yeoman.io) generator
 
+## Note: This is a work in progress currently & I am ironing out a few things
 
 ## Getting Started
 
@@ -35,11 +36,15 @@ Finally, initiate the generator:
 $ yo umbraco
 ```
 
-### Getting To Know Yeoman
+The friendly YeoMan will ask you some questions about creating your Umbraco property editor and then go off and scaffold it all for you to start building your own Umbraco property editor.
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+To add a prevalue to the package.manifest is easy. Change the command window/console to the folder where the package.manifest lives and run the following command, where myPrevalueToAdd is the unique key of the prevalue you wish to add the package.manifest file.
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+YeoMan will ask his usual questions to help you add the prevalue to the package.manifest
+
+```
+yo umbraco:prevalue myPrevalueToAdd
+```
 
 
 ## License
