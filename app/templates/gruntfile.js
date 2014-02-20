@@ -36,16 +36,24 @@ module.exports = function(grunt) {
             }
         },
 
-        //Sass
-        sass: {
-            dist: {
+        //Less CSS
+        less: {
+            development: {
                 options: {
-                    style: 'compressed'                     //Compress CSS file (aka minify)
+                    sourceMap: true
                 },
                 files: {
-                    'css/build/main.css': 'css/main.scss'   //Destination file: Source Sass File
+                    "path/to/result.css": "path/to/source.less"
                 }
-            } 
+            },
+            production: {
+                options: {
+                    cleancss: true
+                },
+                files: {
+                    "path/to/result.css": "path/to/source.less"
+                }
+            }
         },
 
         //Auto watch files/folders for fiel changes & run set tasks above
@@ -68,7 +76,7 @@ module.exports = function(grunt) {
             //This is for the CSS/Sass auto compilation
             css: {
                 files: ['css/*.scss'],          //Monitor files in the css folder with the .scss extension
-                tasks: ['sass'],                //Run the Sass task to compile & minify into CSS
+                tasks: ['less:development'],    //Run the Less task to compile into CSS with SourceMaps
                 options: {
                     spawn: false,               //Don't fully understand this switch but its needed
                 }
@@ -100,8 +108,8 @@ module.exports = function(grunt) {
     //Minify image files
     grunt.loadNpmTasks('grunt-contrib-imagemin');
 
-    //Sass to css compilation
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    //Less to css compilation
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     //Auto-Watch folders/files for changes on save. Re-runs tasks
     grunt.loadNpmTasks('grunt-contrib-watch');
