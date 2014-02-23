@@ -95,6 +95,87 @@ module.exports = function(grunt) {
             }
         }
 
+        //Assembly Info - we can get DLL version to match
+        //TODO: Configure properly (As Default from npm proj page)
+        assemblyinfo: {
+            options: {
+                // Can be solutions, projects or individual assembly info files
+                files: ['src/MyProject/MyProject.csproj'],
+
+                // Filename to search for when a solution or project is 
+                // specified above. Default is AssemblyInfo.cs.
+                filename: 'VersionInfo.cs', 
+
+                // Standard assembly info
+                info: {
+                    title: 'Planet Express Website', 
+                    description: 'Shipping and tracking website.', 
+                    configuration: 'Release', 
+                    company: 'Planet Express', 
+                    product: 'Planet Express Website', 
+                    copyright: 'Copyright 3002 © Planet Express', 
+                    trademark: 'Planet Express',
+                    version: '2.0', 
+                    fileVersion: '2.0.3.2345'
+                }
+            }
+        },
+
+        //MSBuild - Run & Compile our code into a DLL
+        //TODO: Configure properly - defualt from NPM package page
+        msbuild: {
+            dev: {
+                src: ['ConsoleApplication5.csproj'],
+                options: {
+                    projectConfiguration: 'Debug',
+                    targets: ['Clean', 'Rebuild'],
+                    stdout: true,
+                    maxCpuCount: 4,
+                    buildParameters: {
+                        WarningLevel: 2
+                    },
+                    verbosity: 'quiet'
+                }
+            }
+        },
+
+        //Auto package up as a NuGet package
+        //TODO: Again default from NPM package page
+        nugetpack: {
+            dist: {
+                src: '<%= package_temp_dir %>/nuget/package.nuspec',
+                dest: '<%= package_dir %>'
+            }
+        },
+
+
+        //Automatically creates as an Umbraco .zip file
+        //TODO: Uses default config from NPM page
+        umbracoPackage: {
+            options: {
+                name: "Your Package Name",                // You can also use templates if you manage this data elsewhere in your project
+                version: '<%= pkg.version %>',            // like so
+                url: 'http://www.google.com',
+                license: 'MIT',
+                licenseUrl: 'http://opensource.org/licenses/MIT',
+                author: '',
+                authorUrl: '',    
+                manifest: 'pkg/umbraco/package.xml',    // File containing your package manifest template
+                readme: 'pkg/umbraco/readme.txt',        // Optional text file to insert into the package manifest's <readme> field
+                sourceDir: 'pkg/tmp/umbraco',            // Directory that contains the files to be packaged, in the desired folder structure (ie, including "App_Plugins/YourName/".  You can generate this with a copy task if needed.
+                outputDir: 'pkg',                        // Directory to place the generated package file
+            }
+        },
+
+
+        //Clean folders
+        //TODO: Default from npm project page
+        clean: {
+            build: ["path/to/dir/one", "path/to/dir/two"],
+            release: ["path/to/another/dir/one", "path/to/another/dir/two"]
+        },
+
+
     });
 
     // 3. Where we tell Grunt we plan to use this plug-in.
@@ -116,6 +197,22 @@ module.exports = function(grunt) {
 
     //Built in web server - so we can preview our index page
     grunt.loadNpmTasks('grunt-contrib-connect');
+
+    //Update DLL with version info
+    grunt.loadNpmTasks('grunt-dotnet-assembly-info');
+
+    //Run MSBuild - This will compile/build out our DLL
+    grunt.loadNpmTasks('grunt-msbuild');
+
+    //Autobuild our package as a NuGet package
+    grunt.loadNpmTasks('grunt-nuget');
+
+    //Autobuild our package as an Umbraco ZIP package
+    grunt.loadNpmTasks('grunt-umbraco-package');
+
+    //Clean folders
+    grunt.loadNpmTasks('grunt-contrib-clean');
+
 
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
