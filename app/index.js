@@ -51,23 +51,23 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       {
         name: 'developerName',
         message: 'What is your name?',
-        default: 'Umbraco Developer'
+        default: 'Joe Bloggs'
       },
       {
         name: 'propertyTypeAlias',
         message: 'Property Type Alias (Remember has to be unique)',
-        default: 'GoogleMaps'
+        default: 'MyFirst.PropertyEditor'
       },
       {
         name: 'propertyTypeName',
         message: 'Property Type Name (This is the friendly name)',
-        default: 'Google Maps'
+        default: 'My First Property Editor'
       },
       {
         type: 'list',
         name: 'propertyTypeValue',
         message: 'How do you want to save your data as?',
-        choices: [ 'JSON', 'STRING', 'DATETIME', 'INT' ],
+        choices: [ 'JSON', 'STRING', 'TEXT', 'DATETIME', 'INT' ],
         default: 'JSON'
       }
     ];
@@ -83,7 +83,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       //Build Up the Controller Name
       this.controllerName = this.propertyTypeAlias + '.controller';
 
-      //This is the folder name /app_plugins/googlemaps
+      //This is the folder name /app_plugins/MyFirst.PropertyEditor
       this.folderName = 'app_plugins/' + this.propertyTypeAlias;
 
       done();
@@ -120,12 +120,12 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.template('index.html', this.folderName + '/index.html');
 
     //Copy & Template the JS controller
-    this.template('controller.js', this.folderName + '/' + this.propertyTypeAlias +'.js');
+    this.template('controller.js', this.folderName + '/js/' + this.propertyTypeAlias +'.js');
 
     //Copy Less Source Dependancy Files (Grunt will build to single file)
     //Would prefer Sass but depends on ruby & no way to check :(
     //But Less can be installed via npm
-
+    this.copy('propertyeditor.less', this.folderName + '/css/' + this.propertyTypeAlias +'.less');
 
     //Copy any JS Source Depednacy Files (Grunt will build to single file)
     //None in this GoogleMaps Example is needed

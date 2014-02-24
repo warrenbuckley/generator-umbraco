@@ -4,33 +4,25 @@
             "alias": "<%= propertyTypeAlias %>",
             "name": "<%= propertyTypeName %>",
             "editor": {
-                "view": "~/App_Plugins/YourPluginsFolder/view.html",
+                "view": "~/<%= folderName %>/view.html",
                 "valueType": "<%= propertyTypeValue %>"
             },
             "prevalues": {
                 "fields": [
                     {
-                        "label": "Number of columns",
-                        "description": "Enter the number of columns",
-                        "key": "cols",
-                        "view": "requiredfield"
-                    },
-                    {
-                        "label": "Your label",
-                        "description": "Your description",
-                        "key": "yourKey",
-                        "view": "boolean"
-                    }               
+                        "label": "Example PreValue",
+                        "description": "This is an example prevalue",
+                        "key": "examplePreValue",
+                        "view": "string"
+                    }            
                 ]
             }
         }
     ],
     "javascript": [
-        //TODO: The Build/minified version
-        "~/App_Plugins/MarkDownEditor/markdowneditor.controller.js"
+        "~/<%= folderName %>/js/<%= propertyTypeAlias %>.js"
     ],
     "css":[
-        //TODO: The Build/minified version
-        "~/App_Plugins/YourPluginsFolder/style.css"
+        "~/<%= folderName %>/css/<%= propertyTypeAlias %>.css"
     ]
 }
