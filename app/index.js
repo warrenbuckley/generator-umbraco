@@ -81,7 +81,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       this.propertyTypeValue  = props.propertyTypeValue;
 
       //Check we have a value, not null or undenfied
-      if(! propertyTypeAlias)
+      if(!props.propertyTypeAlias)
       {
         this.propertyTypeAlias = props.propertyTypeAlias.replace(' ','.'); //Replace spaces with dots in the alias
       }
