@@ -76,9 +76,15 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
       //Get the values the user answered & store them
       this.developerName      = props.developerName;
-      this.propertyTypeAlias  = props.propertyTypeAlias.replace(' ','.'); //Replace spaces with dots in the alias
+      this.propertyTypeAlias  = props.propertyTypeAlias;
       this.propertyTypeName   = props.propertyTypeName;
       this.propertyTypeValue  = props.propertyTypeValue;
+
+      //Check we have a value, not null or undenfied
+      if(! propertyTypeAlias)
+      {
+        this.propertyTypeAlias = props.propertyTypeAlias.replace(' ','.'); //Replace spaces with dots in the alias
+      }
 
       //Build Up the Controller Name
       this.controllerName = this.propertyTypeAlias + '.controller';
