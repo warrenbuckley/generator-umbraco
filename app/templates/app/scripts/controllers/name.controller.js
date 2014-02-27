@@ -1,4 +1,4 @@
-/* <%= propertyTypeAlias %>.js */
-angular.module("umbraco").controller("<%= controllerName %>", function () {
-	alert("The controller has landed");   
+angular.module('umbraco').controller('<%= names.ctrl %>', function() {
+  console.log('Hello from <%= names.ctrl %>');
 });
+

@@ -1,28 +1,29 @@
-{    
-    "propertyEditors": [      
-        {
-            "alias": "<%= propertyTypeAlias %>",
-            "name": "<%= propertyTypeName %>",
-            "editor": {
-                "view": "~/<%= folderName %>/view.html",
-                "valueType": "<%= propertyTypeValue %>"
-            },
-            "prevalues": {
-                "fields": [
-                    {
-                        "label": "Example PreValue",
-                        "description": "This is an example prevalue",
-                        "key": "examplePreValue",
-                        "view": "string"
-                    }            
-                ]
-            }
-        }
-    ],
-    "javascript": [
-        "~/<%= folderName %>/js/<%= propertyTypeAlias %>.js"
-    ],
-    "css":[
-        "~/<%= folderName %>/css/<%= propertyTypeAlias %>.css"
-    ]
+{
+  "propertyEditors": [
+    {
+      "name": "<%= names.name %>",
+      "alias": "<%= names.alias %>",
+      "editor": {
+        "valueType": "<%= valueType %>",
+        "view": "~/App_Plugins/<%= names.alias %>/views/<%= names.file %>.html"
+      },
+      "prevalues": {
+        "fields": [
+          {
+            "description": "This is an example prevalue",
+            "key": "examplePreValue",
+            "label": "Example PreValue",
+            "view": "string"
+          }
+        ]
+      }
+    }
+  ],
+  "css": [
+    "~/App_Plugins/<%= names.alias %>/css/<%= names.file %>.css"
+  ],
+  "javascript": [
+    "~/App_Plugins/<%= names.alias %>/js/<%= names.file %>.js"
+  ]
 }
+
