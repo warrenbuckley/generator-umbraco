@@ -72,6 +72,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.mkdir('config');
 
     this.template('_package.json', 'package.json');
+    this.template('Gruntfile.js', 'Gruntfile.js');
     this.template('app/views/name.html', 'app/views/' + this.names.file + '.html');
     this.template('app/scripts/controllers/name.controller.js', 'app/scripts/controllers/' + this.names.file + '.controller.js');
     this.template('app/styles/name.less', 'app/styles/' + this.names.file + '.less');
