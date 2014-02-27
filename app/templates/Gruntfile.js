@@ -7,9 +7,10 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
-          'app/controllers/<%= names.file %>.controller.js'
+          'app/scripts/controllers/<%= names.file %>.controller.js'
         ],
-        dest: 'dist/js/<%= names.file %>.js'
+        dest: 'dist/js/<%= names.file %>.js',
+        nonull: true
       }
     },
 
