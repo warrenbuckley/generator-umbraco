@@ -90,7 +90,7 @@ module.exports = function(grunt) {
 
     nugetpack: {
       dist: {
-        src: 'tmp/nuget/<%= pkg.name %>.nuspec',
+        src: 'tmp/nuget/<%%= pkg.name %>.nuspec',
         dest: 'pkg/nuget/'
       }
     },
