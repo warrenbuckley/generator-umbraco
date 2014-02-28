@@ -18,6 +18,7 @@
     "grunt-contrib-copy": "~0.5.0",
     "grunt-template": "~0.2.2",
     "grunt-nuget": "~0.1.1",
-    "grunt-mkdir": "~0.1.1"
+    "grunt-mkdir": "~0.1.1",
+    "grunt-umbraco-package": "~0.0.3"
   }
 }

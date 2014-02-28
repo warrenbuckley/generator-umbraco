@@ -80,6 +80,8 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.template('config/package.manifest', 'config/package.manifest');
 
     this.copy('config/_package.nuspec', 'config/package.nuspec');
+    this.copy('config/_package.xml', 'config/package.xml');
+    this.copy('config/readme.txt', 'config/readme.txt');
   }
 });
 

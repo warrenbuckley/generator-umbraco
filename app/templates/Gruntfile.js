@@ -95,6 +95,22 @@ module.exports = function(grunt) {
       }
     },
 
+    umbracoPackage: {
+      options: {
+        name:        '<%%= pkg.name %>',
+        version:     '<%%= pkg.version %>',
+        url:         '<%%= pkg.url %>',
+        license:     '<%%= pkg.license %>',
+        licenseUrl:  '<%%= pkg.licenseUrl %>',
+        author:      '<%%= pkg.author %>',
+        authorUrl:   '<%%= pkg.authorUrl %>',
+        manifest:    'config/package.xml',
+        readme:      'config/readme.txt',
+        sourceDir:   'tmp/umbraco',
+        outputDir:   'pkg/umbraco',
+      }
+    },
+
     clean: {
       dist: 'dist'
     }
@@ -102,5 +118,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['concat', 'less', 'copy:config', 'copy:views']);
   grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
+  grunt.registerTask('umbraco', ['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
 };
 
