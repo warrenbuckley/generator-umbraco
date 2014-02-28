@@ -61,6 +61,13 @@ module.exports = function(grunt) {
         cwd: 'dist/',
         src: '**',
         dest: 'tmp/nuget/content/App_Plugins/<%= names.alias %>/'
+      },
+
+      umbraco: {
+        expand: true,
+        cwd: 'dist/',
+        src: '**',
+        dest: 'tmp/umbraco/App_Plugins/<%%= pkg.name %>/'
       }
     },
 
@@ -83,7 +90,7 @@ module.exports = function(grunt) {
     mkdir: {
       pkg: {
         options: {
-          create: ['pkg/nuget']
+          create: ['pkg/nuget', 'pkg/umbraco']
         },
       },
     },
