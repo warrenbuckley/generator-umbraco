@@ -54,6 +54,29 @@ module.exports = function(grunt) {
         cwd: 'app/views/',
         src: '**',
         dest: 'dist/views/'
+      },
+
+      nuget: {
+        expand: true,
+        cwd: 'dist/',
+        src: '**',
+        dest: 'tmp/nuget/content/App_Plugins/<%= names.alias %>/'
+      }
+    },
+
+    template: {
+      nuspec: {
+        options: {
+          data: {
+            name:        '<%%= pkg.name %>',
+            version:     '<%%= pkg.version %>',
+            author:      '<%%= pkg.author.name %>',
+            description: '<%%= pkg.description %>'
+          }
+        },
+        files: {
+          'tmp/nuget/<%%= pkg.name %>.nuspec': 'config/package.nuspec'
+        }
       }
     },
 

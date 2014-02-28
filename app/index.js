@@ -78,6 +78,8 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.template('app/scripts/controllers/name.controller.js', 'app/scripts/controllers/' + this.names.file + '.controller.js');
     this.template('app/styles/name.less', 'app/styles/' + this.names.file + '.less');
     this.template('config/package.manifest', 'config/package.manifest');
+
+    this.copy('config/_package.nuspec', 'config/package.nuspec');
   }
 });
 
