@@ -80,11 +80,27 @@ module.exports = function(grunt) {
       }
     },
 
+    mkdir: {
+      pkg: {
+        options: {
+          create: ['pkg/nuget']
+        },
+      },
+    },
+
+    nugetpack: {
+      dist: {
+        src: 'tmp/nuget/<%= pkg.name %>.nuspec',
+        dest: 'pkg/nuget/'
+      }
+    },
+
     clean: {
       dist: 'dist'
     }
   });
 
-  grunt.registerTask('default', ['concat', 'less', 'copy']);
+  grunt.registerTask('default', ['concat', 'less', 'copy:config', 'copy:views']);
+  grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
 };
 
