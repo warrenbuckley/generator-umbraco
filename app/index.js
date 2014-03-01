@@ -12,6 +12,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.on('end', function () {
       if (!this.options['skip-install']) {
         console.log(chalk.green('Installing npm dependencies'));
+        process.chdir(this.names.alias);
         this.npmInstall();
       }
     });
@@ -36,7 +37,8 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       },
       {
         name:     'author',
-        message:  'Author'
+        message:  'Author',
+        default:  this.user.git.username
       },
       {
         name:     'valueType',
@@ -66,22 +68,23 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
   },
 
   app: function () {
-    this.mkdir('app/scripts/controllers');
-    this.mkdir('app/styles');
-    this.mkdir('app/views');
-    this.mkdir('config');
+    this.mkdir(this.names.alias);
+    this.mkdir(this.names.alias + '/app/scripts/controllers');
+    this.mkdir(this.names.alias + '/app/styles');
+    this.mkdir(this.names.alias + '/app/views');
+    this.mkdir(this.names.alias + '/config');
 
-    this.template('gitignore', '.gitignore');
-    this.template('_package.json', 'package.json');
-    this.template('Gruntfile.js', 'Gruntfile.js');
-    this.template('app/views/name.html', 'app/views/' + this.names.file + '.html');
-    this.template('app/scripts/controllers/name.controller.js', 'app/scripts/controllers/' + this.names.file + '.controller.js');
-    this.template('app/styles/name.less', 'app/styles/' + this.names.file + '.less');
-    this.template('config/package.manifest', 'config/package.manifest');
+    this.template('gitignore',                                   this.names.alias + '/.gitignore');
+    this.template('_package.json',                               this.names.alias + '/package.json');
+    this.template('Gruntfile.js',                                this.names.alias + '/Gruntfile.js');
+    this.template('app/views/name.html',                         this.names.alias + '/app/views/' + this.names.file + '.html');
+    this.template('app/scripts/controllers/name.controller.js',  this.names.alias + '/app/scripts/controllers/' + this.names.file + '.controller.js');
+    this.template('app/styles/name.less',                        this.names.alias + '/app/styles/' + this.names.file + '.less');
+    this.template('config/package.manifest',                     this.names.alias + '/config/package.manifest');
 
-    this.copy('config/_package.nuspec', 'config/package.nuspec');
-    this.copy('config/_package.xml', 'config/package.xml');
-    this.copy('config/readme.txt', 'config/readme.txt');
+    this.copy('config/_package.nuspec',  this.names.alias + '/config/package.nuspec');
+    this.copy('config/_package.xml',     this.names.alias + '/config/package.xml');
+    this.copy('config/readme.txt',       this.names.alias + '/config/readme.txt');
   }
 });
 
