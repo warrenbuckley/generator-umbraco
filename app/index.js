@@ -1,9 +1,10 @@
 'use strict';
 
-var util   = require('util');
-var path   = require('path');
-var yeoman = require('yeoman-generator');
-var chalk  = require('chalk');
+var util       = require('util');
+var path       = require('path');
+var yeoman     = require('yeoman-generator');
+var chalk      = require('chalk');
+var changeCase = require('change-case');
 
 var UmbracoGenerator = yeoman.generators.Base.extend({
   init: function () {
@@ -52,10 +53,10 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.prompt(prompts, function(props) {
       this.names = {
         name:   props.name,
-        alias:  props.name.replace(/\s+/g, ''),
-        ctrl:   props.name.replace(/\s+/g, '') + 'Controller',
-        css:    props.name.replace(/\s+/g, '-').toLowerCase(),
-        file:   props.name.replace(/\s+/g, '.').toLowerCase()
+        alias:  changeCase.pascalCase(props.name),
+        ctrl:   changeCase.pascalCase(props.name) + 'Controller',
+        css:    changeCase.paramCase(props.name),
+        file:   changeCase.dotCase(props.name)
       }
 
       this.author      = props.author;
