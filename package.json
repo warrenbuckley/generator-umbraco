@@ -11,7 +11,7 @@
     "email": "warren@creativewebspecialist.co.uk",
     "url": "https://github.com/warrenbuckley"
   },
-  "contributors": [
+  "contributors": [ 
     {
       "name": "Taylor Smith",
       "email": ""
@@ -19,7 +19,7 @@
     {
       "name": "Tom Fulton",
       "email": ""
-    },
+    } 
   ],
   "engines": {
     "node": ">=0.10.0"
