@@ -22,7 +22,15 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
   askFor: function () {
     var done = this.async();
 
-    console.log(this.yeoman);
+    //Umbraco ASCII Art
+    var ascii = this.readFileAsString(path.join(this.sourceRoot(), '/ascii/umbraco-text.txt'));
+    console.log(chalk.green(ascii));
+
+    //Add in some version info
+    console.log(chalk.green('Version: ' + this.pkg.version ));
+    console.log(chalk.green('Author: ' + this.pkg.author.name ));
+    console.log(chalk.green('Contributors: ' + this.pkg.contributors[0].name + ' & ' + this.pkg.contributors[1].name));
+
     console.log(chalk.yellow("Hello there! Let's create an Umbraco Property Editor.\n"));
 
     var prompts = [
