@@ -3,7 +3,6 @@
 	+ How best to run subegenrator to get package.manifest file (Currently has to be in same folder)
 	+ Can we run options on a subgenerator? (Use it to help users remove)
 		+ yo umbraco:prevalue myPreValueAlias --remove
-	+ Create a nice friendly list of views the prevalue can use, rather than free text
 
 */
 
@@ -34,19 +33,24 @@ var PrevalueGenerator = yeoman.generators.NamedBase.extend({
             name: 'prevalueLabel',
             message: 'Label',
             default: 'myPrevalue'
-        }, {
+        },
+        {
             name: 'prevalueDescription',
             message: 'Description',
             default: 'This is a prevalue'
-        }, {
+        },
+        {
             name: 'prevalueKey',
             message: 'Key',
             default: 'myPreValueField'
-        }, {
-            name: 'prevalueView',
-            message: 'View',
-            default: 'boolean'
-        }];
+        },
+		{
+	        name:     'prevalueView',
+	        message:  'View',
+	        type:     'list',
+	        choices:  ['boolean', 'textstring', 'textarea', 'number', 'multivalues', 'nodetype', 'readonlykeyvalues', 'requiredfield', 'treepicker', 'treesource' ],
+	        default:  'boolean'
+      	}];
 
         this.prompt(prompts, function(props) {
 
