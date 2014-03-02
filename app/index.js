@@ -86,6 +86,8 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.template('gitignore',                                   this.names.alias + '/.gitignore');
     this.template('_package.json',                               this.names.alias + '/package.json');
     this.template('Gruntfile.js',                                this.names.alias + '/Gruntfile.js');
+    this.template('README.md', 'README.md');
+    this.template('LICENSE', 'LICENSE');
     this.template('app/views/name.html',                         this.names.alias + '/app/views/' + this.names.file + '.html');
     this.template('app/scripts/controllers/name.controller.js',  this.names.alias + '/app/scripts/controllers/' + this.names.file + '.controller.js');
     this.template('app/styles/name.less',                        this.names.alias + '/app/styles/' + this.names.file + '.less');
