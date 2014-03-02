@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id><%= name %></id>
+    <version><%= version %></version>
+    <authors><%= author %></authors>
+    <owners><%= author %></owners>
+    <description><%= description %></description>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!-- <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl> -->
+    <!-- <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl> -->
+    <!-- <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
+    <!-- <tags>Tag1 Tag2</tags> -->
+    <!-- <dependencies> -->
+    <!--   <dependency id="SampleDependency" version="1.0" /> -->
+    <!-- </dependencies> -->
+  </metadata>
+</package>

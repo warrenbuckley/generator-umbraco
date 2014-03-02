@@ -19,15 +19,22 @@ describe('umbraco generator', function () {
 
   it('creates expected files', function (done) {
     var expected = [
-      // add files you expect to exist here.
-      'bower.json',
-      'gruntfile.js',
-      'package.json'
+      'Archetype/.gitignore',
+      'Archetype/package.json',
+      'Archetype/Gruntfile.js',
+      'Archetype/app/views/archetype.html',
+      'Archetype/app/scripts/controllers/archetype.controller.js',
+      'Archetype/app/styles/archetype.less',
+      'Archetype/config/package.manifest',
+      'Archetype/config/package.nuspec',
+      'Archetype/config/package.xml',
+      'Archetype/config/readme.txt'
     ];
 
     helpers.mockPrompt(this.app, {
-      'someOption': true
+      'name': 'Archetype'
     });
+
     this.app.options['skip-install'] = true;
     this.app.run({}, function () {
       helpers.assertFile(expected);
