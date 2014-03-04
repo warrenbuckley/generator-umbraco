@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/warrenbuckley/generator-umbraco.png?label=ready&title=Ready)](https://waffle.io/warrenbuckley/generator-umbraco)
 # generator-umbraco [![Build Status](https://secure.travis-ci.org/warrenbuckley/generator-umbraco.png?branch=master)](https://travis-ci.org/warrenbuckley/generator-umbraco)
 
 > [Yeoman](http://yeoman.io) generator
