@@ -19,6 +19,7 @@
     "grunt-template": "~0.2.2",
     "grunt-nuget": "~0.1.1",
     "grunt-mkdir": "~0.1.1",
-    "grunt-umbraco-package": "~0.0.3"
+    "grunt-umbraco-package": "~0.0.3",
+    "time-grunt": "~0.2.10"
   }
 }
