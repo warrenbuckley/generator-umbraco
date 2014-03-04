@@ -40,6 +40,14 @@ module.exports = function(grunt) {
         options: {
           spawn: false
         }
+      },
+
+      html: {
+        files: ['app/views/**/*.html'],
+        tasks: ['copy:views'],
+        options: {
+          spawn: false
+        }
       }
     },
 
