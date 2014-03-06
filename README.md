@@ -2,8 +2,6 @@
 
 > [Yeoman](http://yeoman.io) generator
 
-## Note: This is a work in progress currently & I am ironing out a few things
-
 ## Getting Started
 
 ### What is Yeoman?
