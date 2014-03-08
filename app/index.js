@@ -55,21 +55,39 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
         type:     'list',
         choices:  ['JSON', 'STRING', 'TEXT', 'DATETIME', 'INT'],
         default:  'JSON'
+      },
+      {
+        name:     'template',
+        message:  'Do you wish to use a template to help you?',
+        type:     'list',
+        choices:  ['No thanks I am fine', 'Google Maps', 'Markdown Editor'],
+        default:  'No thanks I am fine'
       }
     ];
 
     this.prompt(prompts, function(props) {
+
+      //if props.template - is no thanks (set to basic)
+      if(props.template === 'No thanks I am fine'){
+        props.template = 'basic';
+      }
+
       this.names = {
-        name:   props.name,
-        alias:  changeCase.pascalCase(props.name),
-        ctrl:   changeCase.pascalCase(props.name) + 'Controller',
-        css:    changeCase.paramCase(props.name),
-        file:   changeCase.dotCase(props.name)
+        name:     props.name,
+        alias:    changeCase.pascalCase(props.name),
+        ctrl:     changeCase.pascalCase(props.name) + 'Controller',
+        css:      changeCase.paramCase(props.name),
+        file:     changeCase.dotCase(props.name),
+        template: changeCase.paramCase(props.template)
       }
 
       this.author      = props.author;
       this.description = props.description;
       this.valueType   = props.valueType;
+
+      //Log template type
+      console.log(this.names.template);
+
 
       done();
 
@@ -77,25 +95,32 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
   },
 
   app: function () {
+    
+    //Create Directories
     this.mkdir(this.names.alias);
     this.mkdir(this.names.alias + '/app/scripts/controllers');
     this.mkdir(this.names.alias + '/app/styles');
     this.mkdir(this.names.alias + '/app/views');
     this.mkdir(this.names.alias + '/config');
 
-    this.template('gitignore',                                   this.names.alias + '/.gitignore');
-    this.template('_package.json',                               this.names.alias + '/package.json');
-    this.template('Gruntfile.js',                                this.names.alias + '/Gruntfile.js');
+    //Template: Common files
     this.template('README.md', 'README.md');
     this.template('LICENSE', 'LICENSE');
-    this.template('app/views/name.html',                         this.names.alias + '/app/views/' + this.names.file + '.html');
-    this.template('app/scripts/controllers/name.controller.js',  this.names.alias + '/app/scripts/controllers/' + this.names.file + '.controller.js');
-    this.template('app/styles/name.less',                        this.names.alias + '/app/styles/' + this.names.file + '.less');
-    this.template('config/package.manifest',                     this.names.alias + '/config/package.manifest');
+    this.template('gitignore',      this.names.alias + '/.gitignore');
+    this.template('_package.json',  this.names.alias + '/package.json');
+    this.template('Gruntfile.js',   this.names.alias + '/Gruntfile.js');
+    
+    //Template: Files specific to template type (/basic/app/views/name.html ...)
+    this.template(this.names.template + '/app/views/name.html',                          this.names.alias + '/app/views/' + this.names.file + '.html');
+    this.template(this.names.template + '/app/scripts/controllers/name.controller.js',   this.names.alias + '/app/scripts/controllers/' + this.names.file + '.controller.js');
+    this.template(this.names.template + '/app/styles/name.less',                         this.names.alias + '/app/styles/' + this.names.file + '.less');
+    this.template(this.names.template + '/config/package.manifest',                      this.names.alias + '/config/package.manifest');
 
+    //Copy Files: No param's need replacing
     this.copy('config/_package.nuspec',  this.names.alias + '/config/package.nuspec');
     this.copy('config/_package.xml',     this.names.alias + '/config/package.xml');
     this.copy('config/readme.txt',       this.names.alias + '/config/readme.txt');
+    
   }
 });
 
