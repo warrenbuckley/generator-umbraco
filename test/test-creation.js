@@ -32,7 +32,8 @@ describe('umbraco generator', function () {
     ];
 
     helpers.mockPrompt(this.app, {
-      'name': 'Archetype'
+      'name': 'Archetype',
+      'template': 'No thanks I am fine'
     });
 
     this.app.options['skip-install'] = true;
