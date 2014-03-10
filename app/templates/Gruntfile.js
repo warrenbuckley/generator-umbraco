@@ -140,23 +140,30 @@ module.exports = function(grunt) {
 
   //Deploy (copy) task
   //http://gruntjs.com/api/grunt.option
-  grunt.registerTask('deploy', 'Copy & deploy files to our Umbraco website', function(n){
+  grunt.registerTask('deploy', 'Copy & deploy files to our Umbraco website', function(){
     
     //Get the --target=c:/my-path/etc/umbraco/
     var target = grunt.option('target');
 
     //Check we have a target option
     if(!target){
-      //Error message
-      grunt.log.error('No target has been specified.');
-
-      //Stop the task from running
-      return false;
+      //Error message & stop processing task
+      grunt.fail.warn('No target has been specified.');
     }
+
+    //Debug
+    grunt.log.oklns('Target is: ' + target);
     
 
+    //Can we use grunt.file API to verify that var is definately valid path/folder?!
+    //http://gruntjs.com/api/grunt.file
+    if(!grunt.file.isDir(target)){
+      //Error message & stop processing task
+      grunt.fail.warn('The target passed in is not a folder path.');
+    }
+
     //Run grunt tasks - default  for build & then copy using target
-    //grunt.task.run(['default', 'copy']);
+    //grunt.task.run(['default', 'copy:' + target]);
 
   });
 
