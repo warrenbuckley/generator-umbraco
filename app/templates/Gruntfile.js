@@ -137,5 +137,28 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['concat', 'less', 'copy:config', 'copy:views']);
   grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
   grunt.registerTask('umbraco', ['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
+
+  //Deploy (copy) task
+  //http://gruntjs.com/api/grunt.option
+  grunt.registerTask('deploy', 'Copy & deploy files to our Umbraco website', function(n){
+    
+    //Get the --target=c:/my-path/etc/umbraco/
+    var target = grunt.option('target');
+
+    //Check we have a target option
+    if(!target){
+      //Error message
+      grunt.log.error('No target has been specified.');
+
+      //Stop the task from running
+      return false;
+    }
+    
+
+    //Run grunt tasks - default  for build & then copy using target
+    //grunt.task.run(['default', 'copy']);
+
+  });
+
 };
 
