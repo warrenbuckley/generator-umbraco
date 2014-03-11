@@ -65,7 +65,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             src: ['**/*'], 
-            dest: '<%= grunt.option("target") %>\\App_Plugins\\warren', 
+            dest: '<%%= grunt.option("target") %>\\App_Plugins\\', 
             flatten: false
           }
         ]
@@ -173,9 +173,8 @@ module.exports = function(grunt) {
       grunt.fail.warn('The target passed in is not a folder path.');
     }
 
-    //Run copy with deploy subtask (that uses the target option)
-    grunt.task.run(['copy:deploy']);
-
+    //Run grunt task - deploy subtask of copy
+    grunt.task.run(['copy:deploy');
 
   });
 
