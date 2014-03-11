@@ -29,6 +29,14 @@ module.exports = function(grunt) {
     },
 
     watch: {
+      deploy: {
+        files: ['app/**/*'],
+        tasks: ['deploy'],
+        options: {
+          spawn: false
+        }
+      },
+
       less: {
         files: ['app/styles/**/*.less'],
         tasks: ['less:dist'],
