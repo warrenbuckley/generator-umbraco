@@ -60,6 +60,17 @@ module.exports = function(grunt) {
         dest: 'dist/package.manifest',
       },
 
+      deploy: {
+        files: [
+          {
+            expand: true,
+            src: ['**/*'], 
+            dest: '<%= grunt.option("target") %>\\App_Plugins\\warren', 
+            flatten: false
+          }
+        ]
+      },
+
       views: {
         expand: true,
         cwd: 'app/views/',
@@ -162,8 +173,9 @@ module.exports = function(grunt) {
       grunt.fail.warn('The target passed in is not a folder path.');
     }
 
-    //Run grunt tasks - default  for build & then copy using target
-    //grunt.task.run(['default', 'copy:' + target]);
+    //Run copy with deploy subtask (that uses the target option)
+    grunt.task.run(['copy:deploy']);
+
 
   });
 
