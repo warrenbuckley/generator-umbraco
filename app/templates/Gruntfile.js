@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    dest: grunt.option('target') ? grunt.option('target') : 'dist',
+    dest: grunt.option('target') || 'dist',
     basePath: 'App_Plugins/<%%= pkg.name %>',
 
     concat: {
