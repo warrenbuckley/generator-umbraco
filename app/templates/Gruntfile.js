@@ -6,13 +6,15 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    dest: grunt.option('target') || 'dist',
+    basePath: 'App_Plugins/<%%= pkg.name %>',
 
     concat: {
       dist: {
         src: [
           'app/scripts/controllers/<%= names.file %>.controller.js'
         ],
-        dest: 'dist/js/<%= names.file %>.js',
+        dest: '<%%= dest %>/<%%= basePath %>/js/<%= names.file %>.js',
         nonull: true
       }
     },
@@ -23,7 +25,7 @@ module.exports = function(grunt) {
           paths: ["app/styles"],
         },
         files: {
-          'dist/css/<%= names.file %>.css': 'app/styles/<%= names.file %>.less',
+          '<%%= dest %>/<%%= basePath %>/css/<%= names.file %>.css': 'app/styles/<%= names.file %>.less',
         }
       }
     },
@@ -57,28 +59,28 @@ module.exports = function(grunt) {
     copy: {
       config: {
         src: 'config/package.manifest',
-        dest: 'dist/package.manifest',
+        dest: '<%%= dest %>/<%%= basePath %>/package.manifest',
       },
 
       views: {
         expand: true,
         cwd: 'app/views/',
         src: '**',
-        dest: 'dist/views/'
+        dest: '<%%= dest %>/<%%= basePath %>/views/'
       },
 
       nuget: {
         expand: true,
-        cwd: 'dist/',
+        cwd: '<%%= dest %>',
         src: '**',
-        dest: 'tmp/nuget/content/App_Plugins/<%= names.alias %>/'
+        dest: 'tmp/nuget/content/'
       },
 
       umbraco: {
         expand: true,
-        cwd: 'dist/',
+        cwd: '<%%= dest %>/',
         src: '**',
-        dest: 'tmp/umbraco/App_Plugins/<%%= pkg.name %>/'
+        dest: 'tmp/umbraco/'
       }
     },
 
@@ -130,7 +132,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      dist: 'dist'
+      dist: '<%%= dest %>'
     }
   });
 
