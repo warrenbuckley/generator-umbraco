@@ -31,6 +31,14 @@ module.exports = function(grunt) {
     },
 
     watch: {
+      deploy: {
+        files: ['app/**/*'],
+        tasks: ['deploy'],
+        options: {
+          spawn: false
+        }
+      },
+
       less: {
         files: ['app/styles/**/*.less'],
         tasks: ['less:dist'],
@@ -60,6 +68,18 @@ module.exports = function(grunt) {
       config: {
         src: 'config/package.manifest',
         dest: '<%%= dest %>/<%%= basePath %>/package.manifest',
+      },
+
+      deploy: {
+        files: [
+          {
+            expand: true,
+            cwd: 'dist/',
+            src: ['**/*'], 
+            dest: '<%%= grunt.option("target") %>\\App_Plugins\\<%%= pkg.name %>', 
+            flatten: false
+          }
+        ]
       },
 
       views: {
@@ -139,5 +159,35 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['concat', 'less', 'copy:config', 'copy:views']);
   grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
   grunt.registerTask('umbraco', ['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
+
+  //Deploy (copy) task
+  //http://gruntjs.com/api/grunt.option
+  grunt.registerTask('deploy', 'Copy & deploy files to our Umbraco website', function(){
+    
+    //Get the --target=c:/my-path/etc/umbraco/
+    var target = grunt.option('target');
+
+    //Check we have a target option
+    if(!target){
+      //Error message & stop processing task
+      grunt.fail.warn('No target has been specified.');
+    }
+
+    //Debug
+    grunt.log.oklns('Target is: ' + target);
+    
+
+    //Can we use grunt.file API to verify that var is definately valid path/folder?!
+    //http://gruntjs.com/api/grunt.file
+    if(!grunt.file.isDir(target)){
+      //Error message & stop processing task
+      grunt.fail.warn('The target passed in is not a folder path.');
+    }
+
+    //Run grunt task - Run default first then deploy subtask of copy
+    grunt.task.run(['default', 'copy:deploy']);
+
+  });
+
 };
 
