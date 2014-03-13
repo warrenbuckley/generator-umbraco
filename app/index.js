@@ -104,8 +104,8 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.mkdir(this.names.alias + '/config');
 
     //Template: Common files
-    this.template('README.md', 'README.md');
-    this.template('LICENSE', 'LICENSE');
+    this.template('README.md',      this.names.alias + '/README.md');
+    this.template('LICENSE',        this.names.alias + '/LICENSE');
     this.template('gitignore',      this.names.alias + '/.gitignore');
     this.template('_package.json',  this.names.alias + '/package.json');
     this.template('Gruntfile.js',   this.names.alias + '/Gruntfile.js');
