@@ -95,7 +95,10 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
   },
 
   app: function () {
-    
+    //Read package.manifest JSON (So we can loop over them in the HTML view markup)
+    this.pkgmanifest  = yeoman.file.readJSON(path.join(__dirname,'templates/' , this.names.template ,'/config/package.manifest'));
+    this.prevalues    = this.pkgmanifest.propertyEditors[0].prevalues.fields;
+
     //Create Directories
     this.mkdir(this.names.alias);
     this.mkdir(this.names.alias + '/app/scripts/controllers');

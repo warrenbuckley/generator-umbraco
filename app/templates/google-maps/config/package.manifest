@@ -14,6 +14,30 @@
             "key": "examplePreValue",
             "label": "Example PreValue",
             "view": "textstring"
+          },
+          {
+            "description": "This is initial Lat",
+            "key": "lat",
+            "label": "Lat",
+            "view": "textstring"
+          },
+          {
+            "description": "This is initial Lng",
+            "key": "lng",
+            "label": "Lng",
+            "view": "textstring"
+          },
+          {
+            "description": "This is initial Zoom",
+            "key": "zoom",
+            "label": "Zoom",
+            "view": "number"
+          },
+          {
+            "description": "This is initial Map Type",
+            "key": "maptype",
+            "label": "Map Type",
+            "view": "textstring"
           }
         ]
       }
