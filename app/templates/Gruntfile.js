@@ -31,14 +31,6 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      deploy: {
-        files: ['app/**/*'],
-        tasks: ['deploy'],
-        options: {
-          spawn: false
-        }
-      },
-
       less: {
         files: ['app/styles/**/*.less'],
         tasks: ['less:dist'],
@@ -144,38 +136,57 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['concat', 'less', 'copy:config', 'copy:views']);
-  grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
-  grunt.registerTask('umbraco', ['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
+  //Legacy - now below so we can run our validation check first...
+  //grunt.registerTask('default', ['concat', 'less', 'copy:config', 'copy:views']);
+  //grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
+  //grunt.registerTask('umbraco', ['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
 
-  //Deploy (copy) task
-  //http://gruntjs.com/api/grunt.option
-  grunt.registerTask('deploy', 'Copy & deploy files to our Umbraco website', function(){
-    
-    //Get the --target=c:/my-path/etc/umbraco/
-    var target = grunt.option('target');
+  //TASK: default
+  grunt.registerTask('default', 'Concat files, build Less & copy config & views', function(){
+    validateTarget();
+    grunt.task.run(['concat', 'less', 'copy:config', 'copy:views']);
+  });
 
-    //Check we have a target option
-    if(!target){
-      //Error message & stop processing task
-      grunt.fail.warn('No target has been specified.');
-    }
+  //TASK nuget
+  grunt.registerTask('nuget', 'Clean, rebuild, copy files for nuget & create it', function(){
+    validateTarget();
+    grunt.task.run(['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
+  });
+
+
+  //TASK umbraco
+  grunt.registerTask('umbraco', 'Clean, rebuild, copy files for umbraco package & create it', function(){
+    validateTarget();
+    grunt.task.run(['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
+  });
+
+
+  
+  //Validation for --target option
+  function validateTarget() {
+
+    var destTarget = grunt.config.get('dest');
 
     //Debug
-    grunt.log.oklns('Target is: ' + target);
-    
+    grunt.log.oklns('Target (dest) is: ' + destTarget);
 
-    //Can we use grunt.file API to verify that var is definately valid path/folder?!
-    //http://gruntjs.com/api/grunt.file
-    if(!grunt.file.isDir(target)){
-      //Error message & stop processing task
-      grunt.fail.warn('The target passed in is not a folder path.');
+    //If dest is not set to dist then a target option was set
+    if(destTarget != 'dist') {
+
+      //Happens when grunt --target is called
+      if(destTarget === true) {
+        //Error message & stop processing task
+        grunt.fail.warn('You need to specify a folder for target: grunt --target=c:/mysite/');
+      }
+
+      //Ensure that the dest value the --target is actually a directory that exists
+      if(!grunt.file.isDir(destTarget)){
+
+        //Error message & stop processing task
+        grunt.fail.warn('The target passed in is not a folder path.');
+      }
     }
-
-    //Run grunt task - Run default (uses --target instead of the default of dist)
-    grunt.task.run(['default']);
-
-  });
+  }
 
 };
 
