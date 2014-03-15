@@ -66,8 +66,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
             name: "Markdown Editor",
             value: "markdown-editor"
           }
-        ],
-        default:  'No thanks I am fine'
+        ]
       },
       {
         name:     'valueType',
