@@ -1,5 +1,27 @@
 <div ng-controller="<%= names.ctrl %>" class="<%= names.css %>">
-  <h1><%= names.name %></h1>
-  <h2>Google Mpas</h2>
-</div>
+	<!-- Map -->
+	<div id="{{model.alias}}-google-map" style="width:100%; height:350px;"></div>
 
+	<hr/>
+
+	<div class="value">
+        <label for="lat">Lat</label>
+        <input type="text" name="lat" ng-model="model.value.lat" readonly/>
+    </div>
+  
+    <div  class="value">
+        <label for="lng">Lng</label>
+        <input type="text" name="lng" ng-model="model.value.lng" readonly/>
+    </div>
+
+    <div  class="value">
+        <label for="zoom">Zoom</label>
+        <input type="text" name="zoom" ng-model="model.value.zoom" readonly/>
+    </div>
+
+    <div class="value">
+        <label for="maptype">Type</label>
+        <input type="text" name="maptype" ng-model="model.value.maptype" readonly/>
+    </div>
+
+</div>

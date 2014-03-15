@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"des",
+				"destTarget"
+			],
+			[
+				"pa",
+				"paramCase"
+			],
+			[
 				"prima",
 				"primary_rgb_val"
 			]
@@ -11,6 +19,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/templates/Gruntfile.js",
+			"settings":
+			{
+				"buffer_size": 4826,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/index.js",
+			"settings":
+			{
+				"buffer_size": 4536,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -56,6 +80,14 @@
 	},
 	"file_history":
 	[
+		"/Users/warrenbuckley/GitHub/generator-umbraco/app/templates/Gruntfile-temp.js",
+		"/Users/warrenbuckley/GitHub/generator-umbraco/app/templates/Gruntfile.js",
+		"/Users/warrenbuckley/GitHub/generator-umbraco/app/index.js",
+		"/Users/warrenbuckley/GitHub/generator-umbraco/test/test-creation.js",
+		"/Users/warrenbuckley/GitHub/generator-umbraco/app/templates/google-maps/app/scripts/controllers/name.controller.js",
+		"/Users/warrenbuckley/GitHub/generator-umbraco/app/templates/google-maps/app/views/name.html",
+		"/Users/warrenbuckley/GitHub/generator-umbraco/app/templates/markdown-editor/app/scripts/controllers/name.controller.js",
+		"/Users/warrenbuckley/GitHub/generator-umbraco/app/templates/markdown-editor/app/views/name.html",
 		"/Users/warrenbuckley/GitHub/warrenbuckley/talks/AngularJS-London-Umbraco/src/styles/main.styl",
 		"/Users/warrenbuckley/GitHub/warrenbuckley/talks/AngularJS-London-Umbraco/bower.json",
 		"/Users/warrenbuckley/GitHub/warrenbuckley/talks/AngularJS-London-Umbraco/Gruntfile.js",
@@ -78,6 +110,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"destTarget",
 			"primary",
 			"png"
 		],
@@ -97,8 +130,65 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/templates/Gruntfile.js",
+					"settings":
+					{
+						"buffer_size": 4826,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4536,
+								4536
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2267.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/index.js",
+					"settings":
+					{
+						"buffer_size": 4536,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2697,
+								2697
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1323.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
