@@ -4,15 +4,6 @@
 
 	<hr/>
 
-	<!-- Values (ReadOnly) -->
-	<!-- http://lodash.com/docs#template -->
-	<% _.forEach(prevalues., function(prevalue) { %>
-	<div class="value">
-		<label for="<%= prevalue.key %>"><%= prevalue.label %></label>
-		<input type="text" name="<%= prevalue.key %>" ng-model="model.value.<%= prevalue.key %>" readonly />
-	</div>
-	<% }); %>
-
 	<div class="value">
         <label for="lat">Lat</label>
         <input type="text" name="lat" ng-model="model.value.lat" readonly/>
