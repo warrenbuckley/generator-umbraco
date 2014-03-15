@@ -47,30 +47,62 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       {
         name:     'author',
         message:  'Author',
-        default:  this.user.git.username
-      },
-      {
-        name:     'valueType',
-        message:  'What type of data will you be storing?',
-        type:     'list',
-        choices:  ['JSON', 'STRING', 'TEXT', 'DATETIME', 'INT'],
-        default:  'JSON'
+        default:  this.user.git.username || 'Warren Buckley'
       },
       {
         name:     'template',
         message:  'Do you wish to use a template to help you?',
         type:     'list',
-        choices:  ['No thanks I am fine', 'Google Maps', 'Markdown Editor'],
+        choices: [
+          {
+            name: "No thanks I am fine",
+            value: "basic"
+          },
+          {
+            name: "Google Maps",
+            value: "google-maps"
+          },
+          {
+            name: "Markdown Editor",
+            value: "markdown-editor"
+          }
+        ],
         default:  'No thanks I am fine'
+      },
+      {
+        name:     'valueType',
+        message:  'What type of data will you be storing?',
+        type:     'list',
+         choices: [
+          {
+            name: "JSON",
+            value: "JSON"
+          },
+          {
+            name: "String",
+            value: "STRING"
+          },
+          {
+            name: "Text",
+            value: "TEXT"
+          },
+          {
+            name: "Date Time",
+            value: "DATETIME"
+          },
+          {
+            name: "Integer",
+            value: "INT"
+          }
+        ],
+        when: function(answers) {
+          return answers.template === "basic";
+        },
+        default:  'JSON'
       }
     ];
 
     this.prompt(prompts, function(props) {
-
-      //if props.template - is no thanks (set to basic)
-      if(props.template === 'No thanks I am fine'){
-        props.template = 'basic';
-      }
 
       this.names = {
         name:     props.name,
