@@ -4,17 +4,11 @@
       "name": "<%= names.name %>",
       "alias": "<%= names.alias %>",
       "editor": {
-        "valueType": "<%= valueType %>",
+        "valueType": "JSON",
         "view": "~/App_Plugins/<%= names.alias %>/views/<%= names.file %>.html"
       },
       "prevalues": {
         "fields": [
-          {
-            "description": "This is an example prevalue",
-            "key": "examplePreValue",
-            "label": "Example PreValue",
-            "view": "textstring"
-          },
           {
             "description": "This is initial Lat",
             "key": "lat",
