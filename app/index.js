@@ -61,10 +61,6 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
           {
             name: "Google Maps",
             value: "google-maps"
-          },
-          {
-            name: "Markdown Editor",
-            value: "markdown-editor"
           }
         ]
       },
