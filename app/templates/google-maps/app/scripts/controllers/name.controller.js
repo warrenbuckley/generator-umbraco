@@ -88,7 +88,7 @@ angular.module('umbraco').controller('<%= names.ctrl %>', function($scope, asset
             //Update Values
             updateValues(map, marker);
         });
-    });
+    };
 
 	//Update values for our JSON
     function updateValues(map, marker) {
