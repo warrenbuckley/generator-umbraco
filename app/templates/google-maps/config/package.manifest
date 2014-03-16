@@ -28,7 +28,7 @@
             "view": "number"
           },
           {
-            "description": "This is initial Map Type",
+            "description": "This is initial Map Type (HYBRID, ROADMAP, SATELLITE, TERRAIN)",
             "key": "maptype",
             "label": "Map Type",
             "view": "textstring"
