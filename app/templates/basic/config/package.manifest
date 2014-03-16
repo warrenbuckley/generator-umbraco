@@ -20,10 +20,10 @@
     }
   ],
   "css": [
-    "~/App_Plugins/<%= names.alias %>/css/<%= names.file %>.css"
+    "~/App_Plugins/<%= names.alias %>/styles/<%= names.file %>.css"
   ],
   "javascript": [
-    "~/App_Plugins/<%= names.alias %>/js/<%= names.file %>.js"
+    "~/App_Plugins/<%= names.alias %>/scripts/<%= names.file %>.js"
   ]
 }
 

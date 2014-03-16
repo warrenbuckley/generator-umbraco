@@ -10,20 +10,29 @@
       "prevalues": {
         "fields": [
           {
-            "description": "This is an example prevalue",
-            "key": "examplePreValue",
-            "label": "Example PreValue",
-            "view": "textstring"
+            "label": "Preview",
+            "description": "Display a live preview",
+            "key": "preview",
+            "view": "boolean"
+          },
+          {
+            "label": "Default value",
+            "description": "If value is blank, the editor will show this",
+            "key": "defaultValue",
+            "view": "textarea"
           }
         ]
       }
     }
   ],
   "css": [
-    "~/App_Plugins/<%= names.alias %>/css/<%= names.file %>.css"
+    "~/App_Plugins/<%= names.alias %>/styles/<%= names.file %>.css"
   ],
   "javascript": [
-    "~/App_Plugins/<%= names.alias %>/js/<%= names.file %>.js"
+    "~/App_Plugins/<%= names.alias %>/scripts/<%= names.file %>.js",
+    "~/App_Plugins/<%= names.alias %>/scripts/lib/markdown/Markdown.Convertor.js",
+    "~/App_Plugins/<%= names.alias %>/scripts/lib/markdown/Markdown.Editor.js"
+    "~/App_Plugins/<%= names.alias %>/scripts/lib/markdown/Markdown.Sanitizer.js"
   ]
 }
 
