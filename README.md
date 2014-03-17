@@ -47,6 +47,9 @@ npm install -g grunt-cli
 ### Grunt Tasks
 There are several grunt tasks you can run from the folder where YeoMan has copied the folder & files for you, make sure you chaneg directory to that folder then you can run the following commands:
 
+![](https://raw.github.com/warrenbuckley/generator-umbraco/master/yo-umbraco-grunt.gif)
+
+
 #### General Build
 ```
 grunt
