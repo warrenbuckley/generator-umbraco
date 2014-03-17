@@ -62,7 +62,7 @@ grunt nuget
 
 #### Build Umbraco Package
 ```
-grunt umbraco
+grunt package
 ```
 
 #### Automatically watch & build files
