@@ -33,6 +33,8 @@ Finally, initiate the generator:
 ```
 yo umbraco
 ```
+![](https://raw.github.com/warrenbuckley/generator-umbraco/master/yo-umbraco.gif)
+
 
 The friendly YeoMan will ask you some questions about creating your Umbraco property editor and then go off and scaffold it all for you to start building your own Umbraco property editor.
 
