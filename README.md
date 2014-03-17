@@ -76,3 +76,5 @@ You can easily copy your property editor to an Umbraco site to test it out. This
 ```
 grunt --target=c:\inetpub\wwwroot\my-umbraco-site\
 ```
+
+![](https://raw.github.com/warrenbuckley/generator-umbraco/master/yo-umbraco-grunt-target.gif)
