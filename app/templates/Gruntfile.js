@@ -1,7 +1,5 @@
 module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
-
-  // Add in time grunt
   require('time-grunt')(grunt);
 
   if (grunt.option('target') && !grunt.file.isDir(grunt.option('target')))
@@ -34,28 +32,29 @@ module.exports = function(grunt) {
     },
 
     watch: {
+      options: {
+        spawn: false,
+        atBegin: true
+      },
+
       less: {
         files: ['app/styles/**/*.less'],
-        tasks: ['less:dist'],
-        options: {
-          spawn: false
-        }
+        tasks: ['less:dist']
       },
 
       js: {
         files: ['app/scripts/**/*.js'],
-        tasks: ['concat:dist'],
-        options: {
-          spawn: false
-        }
+        tasks: ['concat:dist']
       },
 
       html: {
         files: ['app/views/**/*.html'],
-        tasks: ['copy:views'],
-        options: {
-          spawn: false
-        }
+        tasks: ['copy:views']
+      },
+
+      config: {
+        files: ['config/package.manifest'],
+        tasks: ['copy:config']
       }
     },
 
