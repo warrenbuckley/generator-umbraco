@@ -49,6 +49,11 @@ module.exports = function(grunt) {
       html: {
         files: ['app/views/**/*.html'],
         tasks: ['copy:views']
+      },
+
+      config: {
+        files: ['config/package.manifest'],
+        tasks: ['copy:config']
       }
     },
 
