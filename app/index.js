@@ -132,6 +132,8 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.mkdir(this.names.alias + '/app/styles');
     this.mkdir(this.names.alias + '/app/views');
     this.mkdir(this.names.alias + '/config');
+    this.mkdir(this.names.alias + '/test');
+    this.mkdir(this.names.alias + '/test/specs');
 
     //Template: Common files
     this.template('README.md',      this.names.alias + '/README.md');
@@ -145,6 +147,15 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     this.template(this.names.template + '/app/scripts/controllers/name.controller.js',   this.names.alias + '/app/scripts/controllers/' + this.names.file + '.controller.js');
     this.template(this.names.template + '/app/styles/name.less',                         this.names.alias + '/app/styles/' + this.names.file + '.less');
     this.template(this.names.template + '/config/package.manifest',                      this.names.alias + '/config/package.manifest');
+
+
+    //COPY: Files specific for test setup
+    this.copy('test/karma.conf.js', this.names.alias + '/test/karma.conf.js');
+    this.copy('test/app.conf.js', this.names.alias + '/test/app.conf.js');
+
+    //TEMPLATE: controller test setup
+    this.template('test/specs/name.controller.spec.js',   this.names.alias + '/test/specs/' + this.names.ctrl + '.spec.js');
+
 
     //Copy Files: No param's need replacing
     this.copy('config/_package.nuspec',  this.names.alias + '/config/package.nuspec');

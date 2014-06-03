@@ -77,4 +77,21 @@ You can easily copy your property editor to an Umbraco site to test it out. This
 grunt --target=c:\inetpub\wwwroot\my-umbraco-site\
 ```
 
+#### Unit test your controller
+Your property editor comes with a basic test setup for unit testing the editors controller. This is done with [Jasmine](http://jasmine.github.io/2.0/introduction.html) and [Karma](http://karma-runner.github.io/0.12/index.html)
+
+To run your unit tests:
+```
+grunt test
+```
+
+**Notice**: To run unit tests you have to copy over all Umbraco's core javascript files. Which you can do by setting -target to point at your /umbraco/ directory, you only have to do this once.
+
+```
+grunt test --target=c:\inetpub\wwwroot\my-umbraco-site\umbraco
+```
+
+
+
+
 ![](https://raw.github.com/warrenbuckley/generator-umbraco/master/yo-umbraco-grunt-target.gif)
