@@ -30,7 +30,7 @@ describe('umbraco generator', function () {
       'Archetype/config/package.xml',
       'Archetype/config/readme.txt'
       'Archetype/test/app.conf.js',
-      'Archetype/test/karma.conf.js'
+      'Archetype/test/karma.conf.js',
       'Archetype/test/specs/ArchetypeController.spec.js'
     ];
 
