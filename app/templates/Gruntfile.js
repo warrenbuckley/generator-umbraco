@@ -18,7 +18,10 @@ module.exports = function (grunt) {
     concat: {
       dist: {
         src: [
-          'app/scripts/controllers/<%= names.file %>.controller.js'
+          'app/scripts/controllers/*.controller.js',
+          'app/scripts/services/*.service.js',
+          'app/scripts/resources/*.resouce.js',
+          'app/scripts/directives/*.directive.js',
         ],
         dest: '<%%= dest %>/<%%= basePath %>/js/<%= names.file %>.js',
         nonull: true
