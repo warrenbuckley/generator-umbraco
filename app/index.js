@@ -26,27 +26,117 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     console.log(chalk.green('Contributors: ' + this.pkg.contributors[0].name + ' & ' + this.pkg.contributors[1].name + ' & ' + this.pkg.contributors[2].name));
     console.log(chalk.yellow("Hello there! Let's create an Umbraco Property Editor.\n"));
 
-  },
-
-  prompting: function () {
-    var done = this.async();
-
-    // Have Yeoman greet the user.
+     // Have Yeoman greet the user.
     /*
     this.log(yosay(
       'Welcome to the legendary Umbraco generator!'
     ));
     */
 
-    var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
-    }];
+  },
 
+  prompting: function () {
+    ar done = this.async();
+
+    //Ask the user options for the main editor (property editor)
+    var prompts = [
+      {
+        name:     'name',
+        message:  'Name',
+        default:  'Awesome Property Editor'
+      },
+      {
+        name:     'description',
+        message:  'Description',
+        default:  'An Umbraco Property Editor'
+      },
+      {
+        name:     'author',
+        message:  'Author',
+        default:  this.user.git.username || 'Warren Buckley'
+      },
+      {
+        name:     'template',
+        message:  'Do you wish to use a template to help you?',
+        type:     'list',
+        choices: [
+          {
+            name: "No thanks I am fine",
+            value: "basic"
+          },
+          {
+            name: "Google Maps",
+            value: "google-maps"
+          }
+        ]
+      },
+      {
+        name:     'valueType',
+        message:  'What type of data will you be storing?',
+        type:     'list',
+         choices: [
+          {
+            name: "JSON",
+            value: "JSON"
+          },
+          {
+            name: "String",
+            value: "STRING"
+          },
+          {
+            name: "Text",
+            value: "TEXT"
+          },
+          {
+            name: "Date Time",
+            value: "DATETIME"
+          },
+          {
+            name: "Integer",
+            value: "INT"
+          }
+        ],
+        when: function(answers) {
+          return answers.template === "basic";
+        },
+        default:  'JSON'
+      }
+    ];
+
+
+    //For each prompt answer, set it on the main object (this)
+    //So we can use in writing or end functions
     this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
+
+      //Create a nested object of names
+      this.names = {
+        name:     props.name,
+        alias:    changeCase.pascalCase(props.name),
+        ctrl:     changeCase.pascalCase(props.name) + 'Ctrl',
+        less:     changeCase.pascalCase(props.name) + '.less',
+        css:      changeCase.paramCase(props.name) + '.css',
+        view:     changeCase.paramCase(props.name) + '.html',
+        file:     changeCase.dotCase(props.name),
+        template: changeCase.paramCase(props.template)
+      }
+
+      //Store the other properties
+      this.author      = props.author;
+      this.description = props.description;
+      this.valueType   = props.valueType;
+
+      //Create on JSON object to store all the config data for saving
+      var configData = {
+        names:        this.names,
+        author:       this.author,
+        description:  this.description,
+        valueType:    this.valueType
+      }
+
+      //Let's store this info into config - yo-rc.json
+      //So any subgenerators can fetch this info to help generate files for namespaces etc
+      this.config.set('generatorAnswers', configData);
+      this.config.save();
 
       done();
     }.bind(this));
@@ -67,7 +157,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     },
 
     testfiles: function() {
-      
+
       console.log('Writing test files');
 
       //Create the test folder/s
