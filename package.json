@@ -1,15 +1,29 @@
 {
   "name": "generator-umbraco",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "warrenbuckley/generator-umbraco",
   "author": {
     "name": "Warren Buckley",
-    "email": "",
+    "email": "warren@creativewebspecialist.co.uk",
     "url": "https://github.com/warrenbuckley"
   },
+  "contributors": [
+    {
+      "name": "Taylor Smith",
+      "email": ""
+    },
+    {
+      "name": "Tom Fulton",
+      "email": ""
+    },
+    {
+      "name": "Per Ploug",
+      "email": ""
+    }
+  ],
   "engines": {
     "node": ">=0.10.0"
   },

@@ -3,19 +3,40 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
+var chalk = require('chalk');
 
 var UmbracoGenerator = yeoman.generators.Base.extend({
+
   initializing: function () {
+
+    //Read the Package JSON file
     this.pkg = require('../package.json');
+
+    //Get the Umbraco name from text file
+    //this.sourceRoot() - /app/templates folder
+    var asciiArt = this.read(path.join(this.sourceRoot(), '/ascii/umbraco-text.txt'));
+
+    //Ouput the Ascii Art
+    console.log(chalk.green(asciiArt));
+
+    //Add in some version info
+    //TODO: Do a loop for contributors string (rather than hardcode array selection)
+    console.log(chalk.green('Version: ' + this.pkg.version ));
+    console.log(chalk.green('Author: ' + this.pkg.author.name ));
+    console.log(chalk.green('Contributors: ' + this.pkg.contributors[0].name + ' & ' + this.pkg.contributors[1].name + ' & ' + this.pkg.contributors[2].name));
+    console.log(chalk.yellow("Hello there! Let's create an Umbraco Property Editor.\n"));
+    
   },
 
   prompting: function () {
     var done = this.async();
 
     // Have Yeoman greet the user.
+    /*
     this.log(yosay(
       'Welcome to the legendary Umbraco generator!'
     ));
+    */
 
     var prompts = [{
       type: 'confirm',
