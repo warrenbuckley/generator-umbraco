@@ -1,6 +1,7 @@
-# generator-umbraco [![Build Status](https://secure.travis-ci.org/warrenbuckley/generator-umbraco.png?branch=master)](https://travis-ci.org/warrenbuckley/generator-umbraco) [![Stories in Ready](https://badge.waffle.io/warrenbuckley/generator-umbraco.png?label=ready&title=Ready)](https://waffle.io/warrenbuckley/generator-umbraco)
+# generator-umbraco [![Build Status](https://secure.travis-ci.org/warrenbuckley/generator-umbraco.png?branch=master)](https://travis-ci.org/warrenbuckley/generator-umbraco)
 
-> An Umbraco [Yeoman](http://yeoman.io) generator
+> [Yeoman](http://yeoman.io) generator
+
 
 ## Getting Started
 
@@ -14,7 +15,7 @@ Basically, he wears a top hat, lives in your computer, and waits for you to tell
 
 Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
 
-```
+```bash
 npm install -g yo
 ```
 
@@ -24,74 +25,23 @@ Yeoman travels light. He didn't pack any generators when he moved in. You can th
 
 To install generator-umbraco from npm, run:
 
-```
+```bash
 npm install -g generator-umbraco
 ```
 
 Finally, initiate the generator:
 
-```
+```bash
 yo umbraco
 ```
-![](https://raw.github.com/warrenbuckley/generator-umbraco/master/yo-umbraco.gif)
+
+### Getting To Know Yeoman
+
+Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+
+If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
 
-The friendly YeoMan will ask you some questions about creating your Umbraco property editor and then go off and scaffold it all for you to start building your own Umbraco property editor.
+## License
 
-Once you have YeoMan create the Umbraco Property Editor for you you can use the power of GruntJS build tool to help build the property editor. If you have GruntJS already installed then you will not need to run the command below.
-
-```
-npm install -g grunt-cli
-```
-
-### Grunt Tasks
-There are several grunt tasks you can run from the folder where YeoMan has copied the folder & files for you, make sure you chaneg directory to that folder then you can run the following commands:
-
-![](https://raw.github.com/warrenbuckley/generator-umbraco/master/yo-umbraco-grunt.gif)
-
-
-#### General Build
-```
-grunt
-```
-
-#### Build NuGet Package
-```
-grunt nuget
-```
-
-#### Build Umbraco Package
-```
-grunt package
-```
-
-#### Automatically watch & build files
-This will monitor the Less, Javascript & HTML files for you and build, concat & copy them as needed every time you save a file.
-```
-grunt watch
-```
-
-#### Test with an Umbraco Site
-You can easily copy your property editor to an Umbraco site to test it out. This will copy the folder that gets run when calling grunt. You simply need to specify the root of the Umbraco site by specifiying a target switch.
-```
-grunt --target=c:\inetpub\wwwroot\my-umbraco-site\
-```
-
-#### Unit test your controller
-Your property editor comes with a basic test setup for unit testing the editors controller. This is done with [Jasmine](http://jasmine.github.io/2.0/introduction.html) and [Karma](http://karma-runner.github.io/0.12/index.html)
-
-To run your unit tests:
-```
-grunt test
-```
-
-**Notice**: To run unit tests you have to copy over all Umbraco's core javascript files. Which you can do by setting -target to point at your /umbraco/ directory, you only have to do this once.
-
-```
-grunt test --target=c:\inetpub\wwwroot\my-umbraco-site\umbraco
-```
-
-
-
-
-![](https://raw.github.com/warrenbuckley/generator-umbraco/master/yo-umbraco-grunt-target.gif)
+MIT
