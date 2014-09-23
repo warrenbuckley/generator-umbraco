@@ -64,6 +64,22 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     projectfiles: function () {
       this.src.copy('editorconfig', '.editorconfig');
       this.src.copy('jshintrc', '.jshintrc');
+    },
+
+    testfiles: function() {
+      
+      console.log('Writing test files');
+
+      //Create the test folder/s
+      this.dest.mkdir(this.names.alias + '/test/specs');
+
+      //COPY: Files specific for test setup
+      this.src.copy('test/karma.conf.js', this.names.alias + '/test/karma.conf.js');
+      this.src.copy('test/app.conf.js', this.names.alias + '/test/app.conf.js');
+
+      //TEMPLATE: controller test setup
+      this.template('test/specs/name.controller.spec.js',   this.names.alias + '/test/specs/' + this.names.ctrl + '.spec.js');
+
     }
   },
 
