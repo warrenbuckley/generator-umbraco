@@ -25,7 +25,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     console.log(chalk.green('Author: ' + this.pkg.author.name ));
     console.log(chalk.green('Contributors: ' + this.pkg.contributors[0].name + ' & ' + this.pkg.contributors[1].name + ' & ' + this.pkg.contributors[2].name));
     console.log(chalk.yellow("Hello there! Let's create an Umbraco Property Editor.\n"));
-    
+
   },
 
   prompting: function () {
@@ -68,8 +68,18 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    this.installDependencies();
+
+    //If the option --skip-instal is NOT present then install dependencies from NPM & Bower
+    if (!this.options['skip-install']) {
+
+        console.log(chalk.green('Installing npm & bower dependencies'));
+
+        //Install anything in packages.json from NPM
+        //Along with anything from Bower in bower.json
+        this.installDependencies();
+      }
   }
+
 });
 
 module.exports = UmbracoGenerator;
