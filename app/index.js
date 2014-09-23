@@ -144,11 +144,30 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      this.dest.mkdir('app');
-      this.dest.mkdir('app/templates');
 
-      this.src.copy('_package.json', 'package.json');
-      this.src.copy('_bower.json', 'bower.json');
+      console.log('Writing common folders & files for app');
+
+      //Create Folders
+      this.dest.mkdir(this.names.alias);
+      this.dest.mkdir(this.names.alias + '/app/config');
+      this.dest.mkdir(this.names.alias + '/app/scripts/controllers');
+      this.dest.mkdir(this.names.alias + '/app/scripts/directives');
+      this.dest.mkdir(this.names.alias + '/app/scripts/services');
+      this.dest.mkdir(this.names.alias + '/app/styles');
+      this.dest.mkdir(this.names.alias + '/app/views');
+
+
+      //Copy package & bower json files
+      this.template('_package.json', 'package.json');
+      this.template('_bower.json', 'bower.json');
+
+      //Template generic files (Readme, gitignore etc)
+      /*
+      this.template('README.md', this.names.alias + '/README.md');
+      this.template('LICENSE', this.names.alias + '/LICENSE');
+      this.template('gitignore', this.names.alias + '/.gitignore');
+      */
+      
     },
 
     projectfiles: function () {
