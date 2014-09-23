@@ -36,7 +36,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
   },
 
   prompting: function () {
-    ar done = this.async();
+    var done = this.async();
 
     //Ask the user options for the main editor (property editor)
     var prompts = [
