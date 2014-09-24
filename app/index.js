@@ -4,6 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
+var changeCase = require('change-case');
 
 var UmbracoGenerator = yeoman.generators.Base.extend({
 
@@ -21,9 +22,9 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
     //Add in some version info
     //TODO: Do a loop for contributors string (rather than hardcode array selection)
-    console.log(chalk.green('Version: ' + this.pkg.version ));
-    console.log(chalk.green('Author: ' + this.pkg.author.name ));
-    console.log(chalk.green('Contributors: ' + this.pkg.contributors[0].name + ' & ' + this.pkg.contributors[1].name + ' & ' + this.pkg.contributors[2].name));
+    console.log(chalk.white.bold('Version: ') + chalk.white(this.pkg.version ));
+    console.log(chalk.white.bold('Author: ') + chalk.white(this.pkg.author.name ));
+    console.log(chalk.white.bold('Contributors: ') + chalk.white(this.pkg.contributors[0].name + ' & ' + this.pkg.contributors[1].name + ' & ' + this.pkg.contributors[2].name));
     console.log(chalk.yellow("Hello there! Let's create an Umbraco Property Editor.\n"));
 
      // Have Yeoman greet the user.
@@ -56,21 +57,6 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
         default:  this.user.git.username || 'Warren Buckley'
       },
       {
-        name:     'template',
-        message:  'Do you wish to use a template to help you?',
-        type:     'list',
-        choices: [
-          {
-            name: "No thanks I am fine",
-            value: "basic"
-          },
-          {
-            name: "Google Maps",
-            value: "google-maps"
-          }
-        ]
-      },
-      {
         name:     'valueType',
         message:  'What type of data will you be storing?',
         type:     'list',
@@ -96,9 +82,6 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
             value: "INT"
           }
         ],
-        when: function(answers) {
-          return answers.template === "basic";
-        },
         default:  'JSON'
       }
     ];
@@ -145,49 +128,48 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
   writing: {
     app: function () {
 
-      console.log('Writing common folders & files for app');
-
       //Create Folders
-      this.dest.mkdir(this.names.alias);
-      this.dest.mkdir(this.names.alias + '/app/config');
-      this.dest.mkdir(this.names.alias + '/app/scripts/controllers');
-      this.dest.mkdir(this.names.alias + '/app/scripts/directives');
-      this.dest.mkdir(this.names.alias + '/app/scripts/services');
-      this.dest.mkdir(this.names.alias + '/app/styles');
-      this.dest.mkdir(this.names.alias + '/app/views');
+      this.dest.mkdir('app/config');
+      this.dest.mkdir('app/scripts/controllers');
+      this.dest.mkdir('app/scripts/directives');
+      this.dest.mkdir('app/scripts/services');
+      this.dest.mkdir('app/styles');
+      this.dest.mkdir('app/views');
 
 
-      //Copy package & bower json files
+      //Template npm package & bower json files
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
 
       //Template generic files (Readme, gitignore etc)
-      /*
-      this.template('README.md', this.names.alias + '/README.md');
-      this.template('LICENSE', this.names.alias + '/LICENSE');
-      this.template('gitignore', this.names.alias + '/.gitignore');
-      */
+      this.template('README.md', 'README.md');
+      this.template('LICENSE.txt', 'LICENSE');
+      this.template('gitignore.txt', '.gitignore');
+      this.template('gruntfile.js', 'gruntfile.js');
       
     },
 
     projectfiles: function () {
-      this.src.copy('editorconfig', '.editorconfig');
-      this.src.copy('jshintrc', '.jshintrc');
+
+      //Copy & template the basic LESS, HTML View, JS Controller & package.manifest to register with Umbraco
+      this.template('config/package.manifest.txt', 'config/package.manifest');
+      this.template('scripts/name.ctrl.js', 'app/scripts/controllers/' + this.names.file + '.ctrl.js');
+      this.template('styles/name.less.txt', 'app/styles/' + this.names.file + '.less');
+      this.template('views/name.html', 'app/views/' + this.names.file + '.html');
+
     },
 
     testfiles: function() {
 
-      console.log('Writing test files');
-
       //Create the test folder/s
-      this.dest.mkdir(this.names.alias + '/test/specs');
+      this.dest.mkdir('test/specs');
 
       //COPY: Files specific for test setup
-      this.src.copy('test/karma.conf.js', this.names.alias + '/test/karma.conf.js');
-      this.src.copy('test/app.conf.js', this.names.alias + '/test/app.conf.js');
+      this.src.copy('test/karma.conf.js', 'test/karma.conf.js');
+      this.src.copy('test/app.conf.js', 'test/app.conf.js');
 
       //TEMPLATE: controller test setup
-      this.template('test/specs/name.controller.spec.js',   this.names.alias + '/test/specs/' + this.names.ctrl + '.spec.js');
+      this.template('test/specs/name.controller.spec.js', 'test/specs/' + this.names.ctrl + '.spec.js');
 
     }
   },
@@ -197,7 +179,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     //If the option --skip-instal is NOT present then install dependencies from NPM & Bower
     if (!this.options['skip-install']) {
 
-        console.log(chalk.green('Installing npm & bower dependencies'));
+        console.log(chalk.magenta('Installing npm & bower dependencies'));
 
         //Install anything in packages.json from NPM
         //Along with anything from Bower in bower.json
