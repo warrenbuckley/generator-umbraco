@@ -34,7 +34,8 @@
     "app",
     "directive",
     "service",
-    "filter"
+    "filter",
+    "controller"
   ],
   "keywords": [
     "yeoman-generator"
