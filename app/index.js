@@ -95,12 +95,21 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       this.names = {
         name:     props.name,
         alias:    changeCase.pascalCase(props.name),
-        ctrl:     changeCase.pascalCase(props.name) + 'Ctrl',
-        less:     changeCase.pascalCase(props.name) + '.less',
-        css:      changeCase.paramCase(props.name) + '.css',
-        view:     changeCase.paramCase(props.name) + '.html',
-        file:     changeCase.dotCase(props.name),
-        template: changeCase.paramCase(props.template)
+        ctrl:     changeCase.pascalCase(props.name) + '.Ctrl',
+        filenames: {
+          concatJS: changeCase.pascalCase(props.name) + '.js',
+          css:  changeCase.pascalCase(props.name) + '.css',
+          ctrl: changeCase.pascalCase(props.name) + '.ctrl.js',
+          less: changeCase.pascalCase(props.name) + '.less',
+          view: changeCase.pascalCase(props.name) + '.html',
+          test: changeCase.pascalCase(props.name) + '.ctrl.spec.js',
+        },
+        subgenerators: {
+          controller: changeCase.pascalCase(props.name) + '.Ctrl.',
+          filter:     changeCase.pascalCase(props.name) + '.Filter.',
+          directive:  changeCase.pascalCase(props.name) + '.Directive.',
+          service:    changeCase.pascalCase(props.name) + '.Service.'
+        }
       }
 
       //Store the other properties
@@ -129,13 +138,14 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     app: function () {
 
       //Create Folders
-      this.dest.mkdir('app/config');
       this.dest.mkdir('app/scripts/controllers');
       this.dest.mkdir('app/scripts/directives');
+      this.dest.mkdir('app/scripts/filters');
       this.dest.mkdir('app/scripts/services');
       this.dest.mkdir('app/styles');
       this.dest.mkdir('app/views');
-
+      this.dest.mkdir('config');
+      
 
       //Template npm package & bower json files
       this.template('_package.json', 'package.json');
@@ -153,9 +163,9 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
 
       //Copy & template the basic LESS, HTML View, JS Controller & package.manifest to register with Umbraco
       this.template('config/package.manifest.txt', 'config/package.manifest');
-      this.template('scripts/name.ctrl.js', 'app/scripts/controllers/' + this.names.file + '.ctrl.js');
-      this.template('styles/name.less.txt', 'app/styles/' + this.names.file + '.less');
-      this.template('views/name.html', 'app/views/' + this.names.file + '.html');
+      this.template('scripts/name.ctrl.js', 'app/scripts/controllers/' + this.names.filenames.ctrl);
+      this.template('styles/name.less.txt', 'app/styles/' + this.names.filenames.less);
+      this.template('views/name.html', 'app/views/' + this.names.filenames.view);
 
     },
 
@@ -169,7 +179,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       this.src.copy('test/app.conf.js', 'test/app.conf.js');
 
       //TEMPLATE: controller test setup
-      this.template('test/specs/name.controller.spec.js', 'test/specs/' + this.names.ctrl + '.spec.js');
+      this.template('test/specs/name.controller.spec.js', 'test/specs/' + this.names.filenames.test);
 
     }
   },

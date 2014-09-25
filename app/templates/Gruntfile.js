@@ -23,7 +23,7 @@ module.exports = function (grunt) {
           'app/scripts/resources/*.resouce.js',
           'app/scripts/directives/*.directive.js',
         ],
-        dest: '<%%= dest %>/<%%= basePath %>/js/<%= names.file %>.js',
+        dest: '<%%= dest %>/<%%= basePath %>/js/<%= names.filenames.concatJS %>',
         nonull: true
       }
     },
@@ -34,7 +34,7 @@ module.exports = function (grunt) {
           paths: ['app/styles'],
         },
         files: {
-          '<%%= dest %>/<%%= basePath %>/css/<%= names.file %>.css': 'app/styles/<%= names.file %>.less',
+          '<%%= dest %>/<%%= basePath %>/css/<%= names.filenames.css %>': 'app/styles/<%= names.filenames.less %>',
         }
       }
     },
