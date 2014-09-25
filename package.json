@@ -31,7 +31,8 @@
     "test": "mocha"
   },
   "files": [
-    "app"
+    "app",
+    "directive"
   ],
   "keywords": [
     "yeoman-generator"
