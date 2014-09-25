@@ -32,7 +32,8 @@
   },
   "files": [
     "app",
-    "directive"
+    "directive",
+    "service"
   ],
   "keywords": [
     "yeoman-generator"
