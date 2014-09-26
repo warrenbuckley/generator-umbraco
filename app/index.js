@@ -145,7 +145,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
       this.dest.mkdir('app/styles');
       this.dest.mkdir('app/views');
       this.dest.mkdir('config');
-      
+
 
       //Template npm package & bower json files
       this.template('_package.json', 'package.json');
