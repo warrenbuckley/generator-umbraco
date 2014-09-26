@@ -18,10 +18,10 @@ module.exports = function (grunt) {
     concat: {
       dist: {
         src: [
-          'app/scripts/controllers/*.controller.js',
-          'app/scripts/services/*.service.js',
-          'app/scripts/resources/*.resouce.js',
-          'app/scripts/directives/*.directive.js',
+          'app/scripts/controllers/*.js',
+          'app/scripts/directives/*.js',
+          'app/scripts/filters/*.js',
+          'app/scripts/services/*.js'
         ],
         dest: '<%%= dest %>/<%%= basePath %>/js/<%= names.filenames.concatJS %>',
         nonull: true
@@ -55,7 +55,7 @@ module.exports = function (grunt) {
       },
 
       testControllers: {
-        files: ['app/scripts/**/*.controller.js', 'test/specs/**/*.spec.js'],
+        files: ['app/scripts/controllers/*.js', 'test/specs/**/*.spec.js'],
         tasks: ['jshint', 'test']
       },
 
@@ -83,72 +83,11 @@ module.exports = function (grunt) {
         dest: '<%%= dest %>/<%%= basePath %>/views/'
       },
 
-      nuget: {
-        expand: true,
-        cwd: '<%%= dest %>',
-        src: '**',
-        dest: 'tmp/nuget/content/'
-      },
-
-      umbraco: {
-        expand: true,
-        cwd: '<%%= dest %>/',
-        src: '**',
-        dest: 'tmp/umbraco/'
-      },
-
       testAssets: {
         expand: true,
         cwd: '<%%= dest %>',
         src: ['js/umbraco.*.js', 'lib/**/*.js'],
         dest: 'test/assets/'
-      }
-    },
-
-    template: {
-      nuspec: {
-        options: {
-          data: {
-            name:        '<%%= pkg.name %>',
-            version:     '<%%= pkg.version %>',
-            author:      '<%%= pkg.author.name %>',
-            description: '<%%= pkg.description %>'
-          }
-        },
-        files: {
-          'tmp/nuget/<%%= pkg.name %>.nuspec': 'config/package.nuspec'
-        }
-      }
-    },
-
-    mkdir: {
-      pkg: {
-        options: {
-          create: ['pkg/nuget', 'pkg/umbraco']
-        },
-      },
-    },
-
-    nugetpack: {
-      dist: {
-        src: 'tmp/nuget/<%%= pkg.name %>.nuspec',
-        dest: 'pkg/nuget/'
-      }
-    },
-
-    umbracoPackage: {
-      options: {
-        name:        '<%%= pkg.name %>',
-        version:     '<%%= pkg.version %>',
-        url:         '<%%= pkg.url %>',
-        license:     '<%%= pkg.license %>',
-        licenseUrl:  '<%%= pkg.licenseUrl %>',
-        author:      '<%%= pkg.author %>',
-        authorUrl:   '<%%= pkg.authorUrl %>',
-        manifest:    'config/package.xml',
-        readme:      'config/readme.txt',
-        sourceDir:   'tmp/umbraco',
-        outputDir:   'pkg/umbraco',
       }
     },
 
@@ -190,20 +129,29 @@ module.exports = function (grunt) {
     }
   });
 
+  //Default Grunt task - call with just 'grunt'
+  //JsHint, concacts JS, Compiles Less, copy package.manifest & copy HTML editor views
   grunt.registerTask('default', ['jshint', 'concat', 'less', 'copy:config', 'copy:views']);
-  grunt.registerTask('nuget', ['clean', 'default', 'copy:nuget', 'template:nuspec', 'mkdir:pkg', 'nugetpack']);
-  grunt.registerTask('package', ['clean', 'default', 'copy:umbraco', 'mkdir:pkg', 'umbracoPackage']);
-  
+ 
+  //Test Task - call with 'grunt test'  
   grunt.registerTask('test', 'Clean, copy test assets, test', function () {
+
     var assetsDir = grunt.config.get('dest');
+
     //copies over umbraco assets from --target, this must point at the /umbraco/ directory
     if (assetsDir !== 'dist') {
+
       grunt.task.run(['clean:test', 'copy:testAssets', 'karma']);
+
     } else if (grunt.file.isDir('test/assets/js/')) {
+
       grunt.log.oklns('Test assets found, running tests');
       grunt.task.run(['karma']);
+
     } else {
+
       grunt.log.errorlns('Tests assets not found, skipping tests');
     }
+
   });
 };
