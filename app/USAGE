@@ -1,0 +1,17 @@
+Description:
+    Creates a basic starting point for extending Umbraco with AngularJS editors
+
+Example:
+    yo umbraco
+
+    This will create:
+        README.md: Description and minimal user instructions
+        package.json: Development packages installed by npm
+        gruntfile.js: Build tasks for development, JS concation & less compliation etc..
+
+        app/scripts/controllers/myEditor.ctrl.js: Main AngularJS Editor Controller
+        app/styles/myEditor.less: Less file for CSS styles that GruntJS will compile to CSS
+        app/views/myEditor.html: The HTML view for your custom Umbraco editor
+
+        config/package.manifest: The file needed to register the custom editor/s with Umbraco
+        test/: Unit tests for your editor
