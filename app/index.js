@@ -18,14 +18,14 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     var asciiArt = this.read(path.join(this.sourceRoot(), '/ascii/umbraco-text.txt'));
 
     //Ouput the Ascii Art
-    console.log(chalk.green(asciiArt));
+    this.log(chalk.green(asciiArt));
 
     //Add in some version info
     //TODO: Do a loop for contributors string (rather than hardcode array selection)
-    console.log(chalk.white.bold('Version: ') + chalk.white(this.pkg.version ));
-    console.log(chalk.white.bold('Author: ') + chalk.white(this.pkg.author.name ));
-    console.log(chalk.white.bold('Contributors: ') + chalk.white(this.pkg.contributors[0].name + ' & ' + this.pkg.contributors[1].name + ' & ' + this.pkg.contributors[2].name));
-    console.log(chalk.yellow("Hello there! Let's create an Umbraco Property Editor.\n"));
+    this.log(chalk.white.bold('Version: ') + chalk.white(this.pkg.version ));
+    this.log(chalk.white.bold('Author: ') + chalk.white(this.pkg.author.name ));
+    this.log(chalk.white.bold('Contributors: ') + chalk.white(this.pkg.contributors[0].name + ' & ' + this.pkg.contributors[1].name + ' & ' + this.pkg.contributors[2].name));
+    this.log(chalk.yellow("Hello there! Let's create an Umbraco Property Editor.\n"));
 
      // Have Yeoman greet the user.
     /*
@@ -189,7 +189,7 @@ var UmbracoGenerator = yeoman.generators.Base.extend({
     //If the option --skip-instal is NOT present then install dependencies from NPM & Bower
     if (!this.options['skip-install']) {
 
-        console.log(chalk.magenta('Installing npm & bower dependencies'));
+        this.log(chalk.magenta('Installing npm & bower dependencies'));
 
         //Install anything in packages.json from NPM
         //Along with anything from Bower in bower.json
