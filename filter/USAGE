@@ -5,4 +5,4 @@ Example:
     yo umbraco:filter <name>
 
     This will create:
-        myEditor/app//scripts/filters/myEditor.Filter.Lowercase.js: New AngularJS Filter
+        myEditor/app/scripts/filters/myEditor.Filter.Lowercase.js: New AngularJS Filter

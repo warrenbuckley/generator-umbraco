@@ -27,8 +27,8 @@ var UmbracoGenerator = yeoman.generators.NamedBase.extend({
       this.names = configData.names;
 
       //Get the Prefix & the name
-      //AwesomePropertyEditor.Filter.LowerCase.js
-      this.filterName = configData.names.subgenerators.filter + this.name + '.js';
+      this.filterName     = configData.names.subgenerators.filter + this.name;
+      this.filterFileName = configData.names.subgenerators.filter + this.name + '.js';
     }
 
   },
@@ -38,10 +38,10 @@ var UmbracoGenerator = yeoman.generators.NamedBase.extend({
     //Only copy & template file if there are no erros
     if(!this.hasErrors){
 
-      this.log(chalk.green('Create a new filter: ' + this.name));
+      this.log(chalk.green('Create a new filter: ' + this.filterName));
 
       //Copy & template filter file
-      this.template('name.filter.js', 'app/scripts/filters/' + this.filterName);
+      this.template('name.filter.js', 'app/scripts/filters/' + this.filterFileName);
     }
   }
 });
