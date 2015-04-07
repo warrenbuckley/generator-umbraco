@@ -1,0 +1,18 @@
+{
+    "version": "1.4.1",
+    "compilerOptions": {
+        "out": "./dist/app_plugins/<%= names.alias %>/js/<%= names.file %>.js",
+        "sourceMap": true,
+        "sourceRoot": "/app_plugins/<%= names.alias %>/ts/"
+    },
+    "filesGlob": [
+        "./app/scripts/**/*.ts",
+        "./typings/**/*.d.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./app/scripts/controllers/name.controller.ts",
+        "./app/scripts/editor.ts",
+        "./app/scripts/services/name.service.ts"
+    ]
+}

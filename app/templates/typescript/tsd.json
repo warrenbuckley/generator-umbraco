@@ -1,0 +1,36 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "angularjs/angular-cookies.d.ts": {
+      "commit": "0c2ee8583c9a27873d7c40cc79fdcb79b5868150"
+    },
+    "angularjs/angular-route.d.ts": {
+      "commit": "0c2ee8583c9a27873d7c40cc79fdcb79b5868150"
+    },
+    "angularjs/angular-sanitize.d.ts": {
+      "commit": "0c2ee8583c9a27873d7c40cc79fdcb79b5868150"
+    },
+    "angularjs/angular-animate.d.ts": {
+      "commit": "0c2ee8583c9a27873d7c40cc79fdcb79b5868150"
+    },
+    "angularjs/angular.d.ts": {
+      "commit": "0c2ee8583c9a27873d7c40cc79fdcb79b5868150"
+    },
+    "angularjs/angular-resource.d.ts": {
+      "commit": "0c2ee8583c9a27873d7c40cc79fdcb79b5868150"
+    },
+    "underscore/underscore.d.ts": {
+      "commit": "0c2ee8583c9a27873d7c40cc79fdcb79b5868150"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "0c2ee8583c9a27873d7c40cc79fdcb79b5868150"
+    },
+    "jqueryui/jqueryui.d.ts": {
+      "commit": "0c2ee8583c9a27873d7c40cc79fdcb79b5868150"
+    }
+  }
+}

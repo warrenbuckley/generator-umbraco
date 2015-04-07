@@ -1,0 +1,11 @@
+<div ng-controller="<%= names.ctrl %>" class="<%= names.css %>">
+    <h1>Hello <%= names.name %></h1>
+
+    <input type="text" ng-model="model.value" />
+
+    <p>This is your <code>model</code></p>
+    <pre>{{model | json}}</pre>
+    
+    <p>Change the <code>model.value</code> to "umbraco"</p>
+    <button prevent-default ng-click="changeModel('umbraco')">Change model</button>
+</div>

@@ -29,14 +29,15 @@ module.exports = function(config) {
       'test/app.conf.js',
       'test/assets/js/umbraco.*.js',
 
-      'app/scripts/controllers/*.js',
+      'dist/App_Plugins/**/*.js',
       'test/**/*.spec.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-      'test/assets/js/umbraco.httpbackend.js'
+      'test/assets/js/umbraco.httpbackend.js',
+      'test/assets/js/umbraco.controllers.js'
     ],
 
 
